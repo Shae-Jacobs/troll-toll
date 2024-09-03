@@ -43,7 +43,7 @@ router.delete('/:user/:id', async (req, res) => {
 
 //TODO:CheckJWT
 //POST /api/v1/favourites
-router.post('/', async (req, res) => {
+router.post('/:user', async (req, res) => {
   const user = String(req.params.user)
   const newFave = req.body as Favourite
   try {
