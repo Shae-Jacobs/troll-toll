@@ -107,6 +107,7 @@ export async function seed(knex) {
       year_built: 1988,
       length_meters: 350,
       active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Westgate Pedestrian and Cycle Bridge',
@@ -115,6 +116,7 @@ export async function seed(knex) {
       year_built: 2018,
       length_meters: 120,
       active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Wynyard Crossing',

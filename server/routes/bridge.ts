@@ -23,7 +23,7 @@ router.patch('/:id', checkJwt, async (req: JwtRequest, res) => {
   const auth0Id = req.auth?.sub
   const id = Number(req.params.id)
 
-  if (!id) {
+  if (!id || id < 1) {
     console.error('No Bridge Found')
     return res.status(400).send('Bad request')
   }
