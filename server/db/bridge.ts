@@ -10,7 +10,8 @@ export async function getBridges(): Promise<Bridge[]> {
     'bridges.year_built as yearBuilt',
     'bridges.length_meters as lengthMeters',
     'bridges.lanes',
-    'bridges.active_by_Users as activeByUsers',
+    'bridges.active_by_users as activeByUsers',
+    'bridges.image_path as imagePath',
   )
 }
 
@@ -25,7 +26,8 @@ export async function getBridgesById(id: number): Promise<Bridge> {
       'bridges.year_built as yearBuilt',
       'bridges.length_meters as lengthMeters',
       'bridges.lanes',
-      'bridges.active_by_Users as activeByUsers',
+      'bridges.active_by_users as activeByUsers',
+      'bridges.image_path as imagePath',
     )
 }
 
@@ -36,15 +38,15 @@ export async function setActiveBridgesById(
   const allUsers = await getActiveUsers()
   const isActive = allUsers.find((user) => user.activeByUsers === usersToken)
   const isBridgeActive = await getBridgesById(id)
-  if (isBridgeActive.activeByUsers === null && usersToken) {
+  if (isBridgeActive.activeByUsers === null) {
     if (isActive) {
       await db('bridges')
         .where('bridges.id', isActive.id)
-        .update('bridges.active_by_users', null)
+        .update({ active_by_users: null })
     }
     return await db('bridges')
-      .where('bridges.id', id)
-      .update('bridges.active_by_users', usersToken)
+      .where({ id })
+      .update({ active_by_users: usersToken })
   } else {
     throw new Error('Unauthorized!')
   }
@@ -53,7 +55,14 @@ export async function setActiveBridgesById(
 export async function getActiveUsers(): Promise<Bridge[]> {
   const allBridges = await db('bridges').select(
     'bridges.id',
-    'bridges.active_by_users, as activeByUsers',
+    'bridges.name',
+    'bridges.location',
+    'bridges.type',
+    'bridges.year_built as yearBuilt',
+    'bridges.length_meters as lengthMeters',
+    'bridges.lanes',
+    'bridges.active_by_users as activeByUsers',
+    'bridges.image_path as imagePath',
   )
 
   return allBridges.filter(

@@ -19,27 +19,30 @@ router.get('/', async (req, res) => {
 })
 
 // PATCH /api/v1/bridges/:id
-router.patch('/:id', checkJwt, async (req: JwtRequest, res) => {
-  const auth0Id = req.auth?.sub
-  const id = Number(req.params.id)
+router.patch(
+  '/:id',
+  /*checkJwt*/ async (req: JwtRequest, res) => {
+    // const auth0Id = req.auth?.sub
+    const id = Number(req.params.id)
 
-  if (!id) {
-    console.error('No Bridge Found')
-    return res.status(400).send('Bad request')
-  }
+    if (!id || id < 1) {
+      console.error('No Bridge Found')
+      return res.status(400).send('Bad request')
+    }
 
-  if (!auth0Id || auth0Id === 'undefined') {
-    console.error('No auth0Id')
-    return res.status(401).send('Unauthorized')
-  }
+    // if (!auth0Id || auth0Id === 'undefined') {
+    //   console.error('No auth0Id')
+    //   return res.status(401).send('Unauthorized')
+    // }
 
-  try {
-    await db.setActiveBridgesById(id, auth0Id)
-    res.status(200).json({ message: `Bridge: ${id}, is now active!` })
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: 'Something went wrong' })
-  }
-})
+    try {
+      await db.setActiveBridgesById(id, 'auth0|1234')
+      res.status(200).json({ message: `Bridge: ${id}, is now active!` })
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ message: 'Something went wrong' })
+    }
+  },
+)
 
 export default router
