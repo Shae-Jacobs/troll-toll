@@ -4,7 +4,7 @@ import * as db from '../db/toll.ts'
 
 const router = express.Router()
 
-// GET /api/v1/tolls/:id/:user
+// GET /api/v1/tolls/:user/:id
 router.get('/:user/:id', async (req, res) => {
   const user = String(req.params.user)
   const id = Number(req.params.id)
