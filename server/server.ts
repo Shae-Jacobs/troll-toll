@@ -1,7 +1,7 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import bridgeRoutes from './routes/BridgeRoute'
+import bridgeRoutes from './routes/bridgesRoute'
 
 const server = express()
 
