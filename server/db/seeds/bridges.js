@@ -13,7 +13,8 @@ export async function seed(knex) {
       year_built: 1959,
       length_meters: 1020,
       lanes: 8,
-      added_by_user: null,
+      active_by_users: '0auth|4321',
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Grafton Bridge',
@@ -22,7 +23,8 @@ export async function seed(knex) {
       year_built: 1910,
       length_meters: 100,
       lanes: 4,
-      added_by_user: null,
+      active_by_users: '0auth|4321',
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Jacobs Ladder Bridge',
@@ -31,7 +33,8 @@ export async function seed(knex) {
       year_built: 2000,
       length_meters: 50,
       lanes: null,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Māngere Bridge',
@@ -39,7 +42,8 @@ export async function seed(knex) {
       type: 'Road bridge',
       year_built: 1965,
       length_meters: 300,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Newmarket Viaduct',
@@ -47,7 +51,8 @@ export async function seed(knex) {
       type: 'Viaduct',
       year_built: 1980,
       length_meters: 500,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Onehunga Harbour Road Bridge',
@@ -56,7 +61,8 @@ export async function seed(knex) {
       year_built: 1995,
       length_meters: 150,
       lanes: 2,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Onepoto Bridge',
@@ -64,7 +70,8 @@ export async function seed(knex) {
       type: 'Bridge type',
       year_built: 2010,
       length_meters: 80,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Panmure Bridge',
@@ -72,7 +79,8 @@ export async function seed(knex) {
       type: 'Bridge type',
       year_built: 2005,
       length_meters: 120,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Tāmaki Bridge',
@@ -80,7 +88,8 @@ export async function seed(knex) {
       type: 'Bridge type',
       year_built: 2015,
       length_meters: 90,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Upper Harbour Bridge',
@@ -88,7 +97,8 @@ export async function seed(knex) {
       type: 'Bridge type',
       year_built: 2008,
       length_meters: 200,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
     },
     {
       name: 'Victoria Park Viaduct',
@@ -96,7 +106,7 @@ export async function seed(knex) {
       type: 'Viaduct',
       year_built: 1988,
       length_meters: 350,
-      added_by_user: null,
+      active_by_users: null,
     },
     {
       name: 'Westgate Pedestrian and Cycle Bridge',
@@ -104,7 +114,7 @@ export async function seed(knex) {
       type: 'Pedestrian and Cycle Bridge',
       year_built: 2018,
       length_meters: 120,
-      added_by_user: null,
+      active_by_users: null,
     },
     {
       name: 'Wynyard Crossing',
@@ -112,7 +122,30 @@ export async function seed(knex) {
       type: 'Bascule Bridge',
       year_built: 2012,
       length_meters: 60,
-      added_by_user: null,
+      active_by_users: null,
+      image_path: process.env.IMAGE_PATH,
+    },
+  ])
+
+  await knex('favourites').insert([
+    { bridges_id: 1, users_token: '0auth|1234' },
+    { bridges_id: 2, users_token: '0auth|4321' },
+  ])
+
+  const date = new Date().getTime()
+
+  await knex('tolls').insert([
+    {
+      users_token: '0auth|1234',
+      candies: 99,
+      time_stamp: `${date}`,
+      bridges_id: 1,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 55,
+      time_stamp: `${date}`,
+      bridges_id: 2,
     },
   ])
 }
