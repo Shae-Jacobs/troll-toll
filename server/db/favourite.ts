@@ -1,5 +1,6 @@
 import db from './connection.ts'
-import { Favourite, FavouriteData } from '../../models/favourite'
+import { Favourite } from '../../models/favourite'
+import { Bridge } from '../../models/bridge.ts'
 
 export async function getFavourites(): Promise<Favourite[]> {
   return db('favourites').select('*')
@@ -13,4 +14,8 @@ export async function deleteFavouriteById(id: number) {
   return db('favourites').where({ id }).delete().first()
 }
 
-export async function addFavourite(favourite: Favourite) {}
+export async function addFavourite(favourite: Favourite) {
+  return db('favourites')
+    .insert(favourite)
+    .then((insertedEntries) => insertedEntries[0])
+}
