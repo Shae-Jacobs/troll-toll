@@ -28,3 +28,5 @@ router.post('api/v1/tolls', async (req, res) => {
     res.status(500).send('failed add new toll')
   }
 })
+
+export default router
