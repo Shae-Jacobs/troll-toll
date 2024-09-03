@@ -10,7 +10,8 @@ export async function getBridges(): Promise<Bridge[]> {
     'bridges.year_built as yearBuilt',
     'bridges.length_meters as lengthMeters',
     'bridges.lanes',
-    'bridges.active_by_Users as activeByUsers',
+    'bridges.active_by_users as activeByUsers',
+    'bridges.image_path as imagePath',
   )
 }
 
@@ -25,7 +26,8 @@ export async function getBridgesById(id: number): Promise<Bridge> {
       'bridges.year_built as yearBuilt',
       'bridges.length_meters as lengthMeters',
       'bridges.lanes',
-      'bridges.active_by_Users as activeByUsers',
+      'bridges.active_by_users as activeByUsers',
+      'bridges.image_path as imagePath',
     )
 }
 

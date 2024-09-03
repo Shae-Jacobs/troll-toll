@@ -27,11 +27,11 @@ describe('getting all the bridges with expected data', () => {
       name: 'Auckland Harbour Bridge',
       location: 'Auckland Harbour',
       type: 'Motorway bridge',
-      year_built: 1959,
-      length_meters: 1020,
+      yearBuilt: 1959,
+      lengthMeters: 1020,
       lanes: 8,
-      active_by_users: '0auth|4321',
-      image_path: process.env.IMAGE_PATH,
+      activeByUsers: 'auth0|4321',
+      imagePath: String(process.env.IMAGE_PATH),
     })
 
     expect(res.body[11]).toStrictEqual({
@@ -39,10 +39,11 @@ describe('getting all the bridges with expected data', () => {
       name: 'Westgate Pedestrian and Cycle Bridge',
       location: 'Westgate',
       type: 'Pedestrian and Cycle Bridge',
-      year_built: 2018,
-      length_meters: 120,
-      active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      yearBuilt: 2018,
+      lengthMeters: 120,
+      lanes: null,
+      activeByUsers: null,
+      imagePath: String(process.env.IMAGE_PATH),
     })
   })
 })
@@ -57,11 +58,11 @@ describe('searches all the bridges by id', () => {
       name: 'Grafton Bridge',
       location: 'Grafton Gully',
       type: 'Road bridge',
-      year_built: 1910,
-      length_meters: 100,
+      yearBuilt: 1910,
+      lengthMeters: 100,
       lanes: 4,
-      active_by_users: '0auth|4321',
-      image_path: process.env.IMAGE_PATH,
+      activeByUsers: 'auth0|4321',
+      imagePath: String(process.env.IMAGE_PATH),
     })
   })
 
@@ -91,10 +92,10 @@ describe('setting a trolls activity status', () => {
       name: 'Newmarket Viaduct',
       location: 'Newmarket',
       type: 'Viaduct',
-      year_built: 1980,
-      length_meters: 500,
-      active_by_users: 'auth0|1234',
-      image_path: process.env.IMAGE_PATH,
+      yearBuilt: 1980,
+      lengthMeters: 500,
+      activeByUsers: 'auth0|1234',
+      imagePath: String(process.env.IMAGE_PATH),
     })
   })
 })

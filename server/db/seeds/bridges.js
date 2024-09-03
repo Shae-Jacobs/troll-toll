@@ -14,8 +14,8 @@ export async function seed(knex) {
       year_built: 1959,
       length_meters: 1020,
       lanes: 8,
-      active_by_users: '0auth|4321',
-      image_path: process.env.IMAGE_PATH,
+      active_by_users: 'auth0|4321',
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 2,
@@ -25,8 +25,8 @@ export async function seed(knex) {
       year_built: 1910,
       length_meters: 100,
       lanes: 4,
-      active_by_users: '0auth|4321',
-      image_path: process.env.IMAGE_PATH,
+      active_by_users: 'auth0|4321',
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ export async function seed(knex) {
       length_meters: 50,
       lanes: null,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ export async function seed(knex) {
       year_built: 1965,
       length_meters: 300,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 5,
@@ -57,7 +57,7 @@ export async function seed(knex) {
       year_built: 1980,
       length_meters: 500,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 6,
@@ -68,7 +68,7 @@ export async function seed(knex) {
       length_meters: 150,
       lanes: 2,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 7,
@@ -78,7 +78,7 @@ export async function seed(knex) {
       year_built: 2010,
       length_meters: 80,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 8,
@@ -88,7 +88,7 @@ export async function seed(knex) {
       year_built: 2005,
       length_meters: 120,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 9,
@@ -98,7 +98,7 @@ export async function seed(knex) {
       year_built: 2015,
       length_meters: 90,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 10,
@@ -108,7 +108,7 @@ export async function seed(knex) {
       year_built: 2008,
       length_meters: 200,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 11,
@@ -118,7 +118,7 @@ export async function seed(knex) {
       year_built: 1988,
       length_meters: 350,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 12,
@@ -128,7 +128,7 @@ export async function seed(knex) {
       year_built: 2018,
       length_meters: 120,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
     {
       id: 13,
@@ -138,13 +138,13 @@ export async function seed(knex) {
       year_built: 2012,
       length_meters: 60,
       active_by_users: null,
-      image_path: process.env.IMAGE_PATH,
+      image_path: String(process.env.IMAGE_PATH),
     },
   ])
 
   await knex('favourites').insert([
-    { id: 1, bridges_id: 1, users_token: '0auth|1234' },
-    { id: 2, bridges_id: 2, users_token: '0auth|4321' },
+    { id: 1, bridges_id: 1, users_token: 'auth0|1234' },
+    { id: 2, bridges_id: 2, users_token: 'auth0|4321' },
   ])
 
   const date = new Date().getTime()
@@ -152,14 +152,14 @@ export async function seed(knex) {
   await knex('tolls').insert([
     {
       id: 1,
-      users_token: '0auth|1234',
+      users_token: 'auth0|1234',
       candies: 99,
       time_stamp: `${date}`,
       bridges_id: 1,
     },
     {
       id: 2,
-      users_token: '0auth|4321',
+      users_token: 'auth0|4321',
       candies: 55,
       time_stamp: `${date}`,
       bridges_id: 2,
