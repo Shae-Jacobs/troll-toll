@@ -1,15 +1,6 @@
 import db from './connection.ts'
 import { Favourite } from '../../models/favourite'
 
-// export interface Favourite {
-//   bridgesId: number
-//   usersToken: string
-// }
-
-// export interface FavouriteData extends Favourite {
-//   id?: number
-// }
-
 export async function getFavourites(usersToken: string): Promise<Favourite[]> {
   return db('favourites')
     .where('users_token', usersToken)
@@ -21,8 +12,8 @@ export async function getFavourites(usersToken: string): Promise<Favourite[]> {
 }
 
 export async function getFavouriteById(
-  id: number,
   usersToken: string,
+  id: number,
 ): Promise<Favourite> {
   return db('favourites')
     .where({ id })
