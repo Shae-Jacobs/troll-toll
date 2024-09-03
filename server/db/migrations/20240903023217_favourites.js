@@ -3,7 +3,7 @@ export async function up(knex) {
     table.increments('id').primary()
     table
       .integer('bridges_id')
-      .reference('bridges.id')
+      .references('bridges.id')
       .nullable()
       .onDelete('SET NULL')
     table.string('users_token')
