@@ -1,4 +1,10 @@
 export async function seed(knex) {
+  // Deletes ALL existing entries
+
+  await knex('bridges').del()
+  await knex('tolls').del()
+  await knex('favourites').del()
+
   await knex('bridges').insert([
     {
       name: 'Auckland Harbour Bridge',
