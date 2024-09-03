@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12d0e24618426dbb1bb23c482503b2bb80211c16
 # Troll Bridge Website Accessibility Guide
 
 ## Primary Web Accessibility Issues - An Overview
