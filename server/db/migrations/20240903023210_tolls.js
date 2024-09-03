@@ -6,7 +6,7 @@ export async function up(knex) {
     table.string('time_stamp')
     table
       .integer('bridges_id')
-      .reference('bridges.id')
+      .references('bridges.id')
       .nullable()
       .onDelete('SET NULL')
   })
