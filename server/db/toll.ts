@@ -8,16 +8,16 @@ export function getUsersTollsByBridgeId(
   bridgesId: number,
 ): Promise<TollData[]> {
   return db('tolls')
-    .where({ bridgesId })
-    .where({ usersToken })
+    .where('bridges_id', bridgesId)
+    .where('users_token', usersToken)
     .select('tolls.candies as candies')
 }
 
 export function addToll(newToll: Toll) {
   return db('tolls').insert({
-    usersToken: newToll.usersToken,
+    users_token: newToll.usersToken,
     candies: newToll.candies,
-    timeStamp: newToll.timeStamp,
-    bridgesId: newToll.bridgesId,
+    time_stamp: newToll.timeStamp,
+    bridges_id: newToll.bridgesId,
   })
 }

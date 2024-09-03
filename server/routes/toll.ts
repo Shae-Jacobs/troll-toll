@@ -18,7 +18,7 @@ router.get('/:user/:id', async (req, res) => {
 })
 
 // POST /api/v1/tolls
-router.post('api/v1/tolls', async (req, res) => {
+router.post('/', async (req, res) => {
   const newToll = req.body
   try {
     await db.addToll(newToll)
