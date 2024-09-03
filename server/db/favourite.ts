@@ -20,11 +20,13 @@ export async function deleteFavouriteById(id: number, userToken: string) {
   return db('favourites')
     .where({ id })
     .where('users_token', userToken)
-    .delete()
     .first()
+    .delete()
 }
 
 export async function addFavourite(newFave: Favourite, userToken: string) {
-  return db('favourites').where('users_token', userToken)
-  // .then((insertedEntries) => insertedEntries[0])
+  return db('favourites').where('users_token', userToken).insert({
+    users_token: newFave.userToken,
+    bridges_id: newFave.bridgeId,
+  })
 }
