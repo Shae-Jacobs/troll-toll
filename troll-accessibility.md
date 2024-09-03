@@ -1,4 +1,3 @@
-
 # Troll Bridge Website Accessibility Guide
 
 ## Primary Web Accessibility Issues - An Overview
