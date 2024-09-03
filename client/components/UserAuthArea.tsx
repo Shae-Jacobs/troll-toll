@@ -1,29 +1,25 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import IsAuthenticated from './IsAuthenticated'
+import NotAuthenticated from './NotAuthenticated'
 
 function UserAuthArea() {
-  const { loginWithRedirect, logout, isAuthenticated, isLoading, error, user } =
-    useAuth0()
+  const { loginWithRedirect, logout, user } = useAuth0()
   const handleLogOut = () => logout()
   const handleLogIn = () => loginWithRedirect()
 
-  let outlet
-
-  if (!isAuthenticated) {
-    outlet = <button onClick={handleLogIn}>Log In</button>
-  }
-
-  if (isAuthenticated) {
-    outlet = (
-      <>
+  return (
+    <>
+      <IsAuthenticated>
         <button onClick={handleLogOut}>Log Out</button>
         <div>
           <p>{user?.name}</p>
         </div>
-      </>
-    )
-  }
-
-  return <>{outlet}</>
+      </IsAuthenticated>
+      <NotAuthenticated>
+        <button onClick={handleLogIn}>Log In</button>
+      </NotAuthenticated>
+    </>
+  )
 }
 
 export default UserAuthArea
