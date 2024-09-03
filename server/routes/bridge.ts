@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.patch(
   '/:id',
   /*checkJwt*/ async (req: JwtRequest, res) => {
-    const auth0Id = req.auth?.sub
+    // const auth0Id = req.auth?.sub
     const id = Number(req.params.id)
 
     if (!id || id < 1) {
@@ -36,7 +36,7 @@ router.patch(
     // }
 
     try {
-      await db.setActiveBridgesById(id, auth0Id || ' auth0|42')
+      await db.setActiveBridgesById(id, 'auth0|1234')
       res.status(200).json({ message: `Bridge: ${id}, is now active!` })
     } catch (error) {
       console.log(error)

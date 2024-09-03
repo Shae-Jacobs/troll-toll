@@ -6,5 +6,5 @@ export interface Bridge {
   yearBuilt: number
   lengthMeters: string
   lanes?: number | null
-  activeByUsers: string
+  activeByUsers: string | null
 }

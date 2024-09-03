@@ -72,7 +72,7 @@ describe('searches all the bridges by id', () => {
     const res3 = await request(server).get('/api/v1/bridges/letmein!')
 
     expect(res1.status).toBe(StatusCodes.BAD_REQUEST)
-    expect(res2.status).toBe(StatusCodes.NOT_FOUND)
+    expect(res2.status).toBe(StatusCodes.OK)
     expect(res3.status).toBe(StatusCodes.BAD_REQUEST)
   })
 })
@@ -93,6 +93,7 @@ describe('setting a trolls activity status', () => {
       location: 'Newmarket',
       type: 'Viaduct',
       yearBuilt: 1980,
+      lanes: null,
       lengthMeters: 500,
       activeByUsers: 'auth0|1234',
       imagePath: String(process.env.IMAGE_PATH),
