@@ -151,14 +151,14 @@ export async function seed(knex) {
     {
       id: 1,
       users_token: '0auth|1234',
-      candies: 99,
+      candies: 5,
       time_stamp: `${date}`,
       bridges_id: 1,
     },
     {
       id: 2,
       users_token: '0auth|4321',
-      candies: 55,
+      candies: 5,
       time_stamp: `${date}`,
       bridges_id: 2,
     },
