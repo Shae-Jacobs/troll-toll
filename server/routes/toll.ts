@@ -18,3 +18,13 @@ router.get('/:user/:id', async (req, res) => {
 })
 
 // POST /api/v1/tolls
+router.post('api/v1/tolls', async (req, res) => {
+  const newToll = req.body
+  try {
+    await db.addToll(newToll)
+    res.sendStatus(200)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('failed add new toll')
+  }
+})
