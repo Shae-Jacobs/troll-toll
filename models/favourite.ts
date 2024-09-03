@@ -1,6 +1,6 @@
 export interface Favourite {
-  bridgeId: number
-  userToken: string
+  bridgesId: number
+  usersToken: string
 }
 
 export interface FavouriteData extends Favourite {
