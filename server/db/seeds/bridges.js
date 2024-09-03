@@ -7,6 +7,7 @@ export async function seed(knex) {
 
   await knex('bridges').insert([
     {
+      id: 1,
       name: 'Auckland Harbour Bridge',
       location: 'Auckland Harbour',
       type: 'Motorway bridge',
@@ -17,6 +18,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 2,
       name: 'Grafton Bridge',
       location: 'Grafton Gully',
       type: 'Road bridge',
@@ -27,6 +29,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 3,
       name: 'Jacobs Ladder Bridge',
       location: 'Somewhere',
       type: 'Pedestrian bridge',
@@ -37,6 +40,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 4,
       name: 'Māngere Bridge',
       location: 'Māngere',
       type: 'Road bridge',
@@ -46,6 +50,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 5,
       name: 'Newmarket Viaduct',
       location: 'Newmarket',
       type: 'Viaduct',
@@ -55,6 +60,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 6,
       name: 'Onehunga Harbour Road Bridge',
       location: 'Onehunga Harbour Road',
       type: 'Road bridge',
@@ -65,6 +71,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 7,
       name: 'Onepoto Bridge',
       location: 'Someplace',
       type: 'Bridge type',
@@ -74,6 +81,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 8,
       name: 'Panmure Bridge',
       location: 'Panmure',
       type: 'Bridge type',
@@ -83,6 +91,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 9,
       name: 'Tāmaki Bridge',
       location: 'Tāmaki',
       type: 'Bridge type',
@@ -92,6 +101,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 10,
       name: 'Upper Harbour Bridge',
       location: 'Upper Harbour',
       type: 'Bridge type',
@@ -101,6 +111,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 11,
       name: 'Victoria Park Viaduct',
       location: 'Victoria Park',
       type: 'Viaduct',
@@ -110,6 +121,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 12,
       name: 'Westgate Pedestrian and Cycle Bridge',
       location: 'Westgate',
       type: 'Pedestrian and Cycle Bridge',
@@ -119,6 +131,7 @@ export async function seed(knex) {
       image_path: process.env.IMAGE_PATH,
     },
     {
+      id: 13,
       name: 'Wynyard Crossing',
       location: 'Wynyard Quarter',
       type: 'Bascule Bridge',
@@ -130,20 +143,22 @@ export async function seed(knex) {
   ])
 
   await knex('favourites').insert([
-    { bridges_id: 1, users_token: '0auth|1234' },
-    { bridges_id: 2, users_token: '0auth|4321' },
+    { id: 1, bridges_id: 1, users_token: '0auth|1234' },
+    { id: 2, bridges_id: 2, users_token: '0auth|4321' },
   ])
 
   const date = new Date().getTime()
 
   await knex('tolls').insert([
     {
+      id: 1,
       users_token: '0auth|1234',
       candies: 99,
       time_stamp: `${date}`,
       bridges_id: 1,
     },
     {
+      id: 2,
       users_token: '0auth|4321',
       candies: 55,
       time_stamp: `${date}`,
