@@ -6,7 +6,11 @@ export default function ViewBridge() {
   if (isNaN(id)) {
     throw new Error(`Route param "id" is missing orinvalid`)
   }
+<<<<<<< HEAD
 }0
+=======
+}
+>>>>>>> refs/remotes/origin/8-single-bridge-view-w-data
 
 //useBridgeId custom hook.
 const bridge = useBridgeId(id)
