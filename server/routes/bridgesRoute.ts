@@ -11,7 +11,14 @@ router.get('/', async (req, res) => {
   try {
     const bridges = await db.getBridges()
 
+<<<<<<< HEAD
     res.json(bridges as Bridge[])
+||||||| merged common ancestors
+    res.json(bridges)
+=======
+
+    res.json(bridges)
+>>>>>>> 249f9b3fba777a33d2201e5962f2a2110cfbe05c
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')
