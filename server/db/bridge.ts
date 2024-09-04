@@ -2,7 +2,7 @@ import db from './connection.ts'
 import { Bridge } from '../../models/bridge.ts'
 
 export async function getBridges(): Promise<Bridge[]> {
-  return db('bridges').select(
+  return await db('bridges').select(
     'bridges.id',
     'bridges.name',
     'bridges.location',

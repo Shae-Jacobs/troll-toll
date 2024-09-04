@@ -16,7 +16,7 @@ const INITIAL_BRIDGES = [
     length_meters: 1020,
     lanes: 8,
     active_by_users: 'auth0|4321',
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const INITIAL_BRIDGES = [
     length_meters: 100,
     lanes: 4,
     active_by_users: 'auth0|4321',
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const INITIAL_BRIDGES = [
     length_meters: 50,
     lanes: null,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const INITIAL_BRIDGES = [
     year_built: 1965,
     length_meters: 300,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 5,
@@ -58,7 +58,7 @@ const INITIAL_BRIDGES = [
     year_built: 1980,
     length_meters: 500,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const INITIAL_BRIDGES = [
     length_meters: 150,
     lanes: 2,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const INITIAL_BRIDGES = [
     year_built: 2010,
     length_meters: 80,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 8,
@@ -89,7 +89,7 @@ const INITIAL_BRIDGES = [
     year_built: 2005,
     length_meters: 120,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 9,
@@ -99,7 +99,7 @@ const INITIAL_BRIDGES = [
     year_built: 2015,
     length_meters: 90,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ const INITIAL_BRIDGES = [
     year_built: 2008,
     length_meters: 200,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 11,
@@ -119,7 +119,7 @@ const INITIAL_BRIDGES = [
     year_built: 1988,
     length_meters: 350,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 12,
@@ -129,7 +129,7 @@ const INITIAL_BRIDGES = [
     year_built: 2018,
     length_meters: 120,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
   {
     id: 13,
@@ -139,7 +139,7 @@ const INITIAL_BRIDGES = [
     year_built: 2012,
     length_meters: 60,
     active_by_users: null,
-    image_path: String(process.env.IMAGE_PATH),
+    image_path: './images/placeholder-image.webp',
   },
 ]
 
@@ -147,66 +147,48 @@ beforeAll(() => {
   nock.disableNetConnect()
 })
 
-describe('Adding a new movie', () => {
-  it('shows the add movie form', async () => {
+describe('updating a bridge status', () => {
+  it('shows the patrol bridge button', async () => {
     nock('http://localhost').get('/api/v1/bridges').reply(200, INITIAL_BRIDGES)
-    const screen = renderRoute('/bridges')
-    const button = await screen.findByLabelText(/status-button/i)
+    nock('http://localhost').get('/api/v1/bridges/5').reply(200)
+    const screen = renderRoute()
+    const button = await screen.findByRole('button')
     expect(button).toBeVisible()
   })
 
-  it('takes us to the new movie page', async () => {
-    nock('http://localhost').get('/api/v1/movies').reply(200, INITIAL_BRIDGES)
-    const { user, ...screen } = renderRoute('/movies')
-    const form = await screen.findByRole('form', { name: 'Create movie' })
-    expect(form).toBeVisible()
+  it('renders status change / update', async () => {
+    nock('http://localhost').get('/api/v1/bridges').reply(200, INITIAL_BRIDGES)
+    nock('http://localhost').get('/api/v1/bridges/5').reply(StatusCodes.OK)
+    const { user, ...screen } = renderRoute()
+    const bridgeRender = await screen.findByLabelText(/Newmarket Viaduct/i)
+    expect(bridgeRender).toBeVisible()
+    const button = await within(bridgeRender).findByLabelText(/status-button/i)
 
-    // 1. POST request to /api/v1/movies
+    expect(button).toBeVisible()
+
+    // 1. Patch request to /api/v1/bridges/5
     const scope = nock('http://localhost')
-      .post('/api/v1/movies', {
-        title: 'Dune part 2',
-        release_year: 2024,
-      })
-      .reply(
-        StatusCodes.CREATED,
-        {
-          id: 4,
-          title: 'Dune part 2',
-          release_year: 2024,
-        },
-        {
-          Location: '/api/v1/movies/4',
-        },
-      )
+      .patch('/api/v1/bridges/5')
+      .reply(StatusCodes.OK)
 
-    // 2. GET request to /api/v1/ movies
-    const getNewMovieScope = nock('http://localhost')
-      .get('/api/v1/movies/4?withCategories=true')
+    // 2. GET request to /api/v1/bridges/5
+    const getUpdatedStatusScope = nock('http://localhost')
+      .get('/api/v1/bridges/5')
       .reply(200, {
-        id: 4,
-        title: 'Dune part 2',
-        release_year: 2024,
-        categories: [],
+        id: 5,
+        name: 'Newmarket Viaduct',
+        location: 'Newmarket',
+        type: 'Viaduct',
+        year_built: 1980,
+        length_meters: 500,
+        active_by_users: 'auth0|1234',
+        image_path: './images/placeholder-image.webp',
       })
 
-    const titleInput = await within(form).findByLabelText('Title')
-    await user.clear(titleInput)
-    await user.type(titleInput, 'Dune part 2')
-
-    const yearInput = await within(form).findByLabelText('Release Year')
-    await user.clear(yearInput)
-    await user.type(yearInput, '2024')
-
-    const submit = await within(form).findByRole('button')
-    await user.click(submit)
-
-    // 3. we will navigate to the individual movie page for that movie
-    const heading = await screen.findByRole('heading', {
-      name: 'Dune part 2 (2024)',
-    })
-
-    expect(scope.isDone()).toBe(true)
-    expect(getNewMovieScope.isDone()).toBe(true)
-    expect(heading).toBeVisible()
+    await user.click(button)
+    const status = await within(bridgeRender).findByLabelText(/Active/i)
+    expect(scope.isDone())
+    expect(getUpdatedStatusScope.isDone())
+    expect(status).toBeVisible()
   })
 })

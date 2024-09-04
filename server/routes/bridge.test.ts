@@ -31,7 +31,7 @@ describe('getting all the bridges with expected data', () => {
       lengthMeters: 1020,
       lanes: 8,
       activeByUsers: 'auth0|4321',
-      imagePath: String(process.env.IMAGE_PATH),
+      imagePath: './images/placeholder-image.webp',
     })
 
     expect(res.body[11]).toStrictEqual({
@@ -43,7 +43,7 @@ describe('getting all the bridges with expected data', () => {
       lengthMeters: 120,
       lanes: null,
       activeByUsers: null,
-      imagePath: String(process.env.IMAGE_PATH),
+      imagePath: './images/placeholder-image.webp',
     })
   })
 })
@@ -62,7 +62,7 @@ describe('searches all the bridges by id', () => {
       lengthMeters: 100,
       lanes: 4,
       activeByUsers: 'auth0|4321',
-      imagePath: String(process.env.IMAGE_PATH),
+      imagePath: './images/placeholder-image.webp',
     })
   })
 
@@ -96,7 +96,7 @@ describe('setting a trolls activity status', () => {
       lanes: null,
       lengthMeters: 500,
       activeByUsers: 'auth0|1234',
-      imagePath: String(process.env.IMAGE_PATH),
+      imagePath: './images/placeholder-image.webp',
     })
   })
 })

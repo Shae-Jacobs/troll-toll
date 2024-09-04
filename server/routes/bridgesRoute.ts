@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
   try {
     const bridges = await db.getBridgesById(id)
 
-    res.json(bridges)
+    res.json(bridges as Bridge)
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')
