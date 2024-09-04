@@ -2,7 +2,7 @@ import express from 'express'
 import * as Path from 'node:path'
 
 import bridgeRoutes from './routes/bridgeRoutes'
-import favouriteRoutes from './routes/favouriteRoute'
+import favouriteRoutes from './routes/favouriteRoutes'
 const server = express()
 
 server.use(express.json())
