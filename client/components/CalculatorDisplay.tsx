@@ -1,6 +1,7 @@
 // import { useQuery } from '@tanstack/react-query'
 // import { getUsersTollsByBridgeId } from '../apis/toll'
 // import { Toll, TollData } from '../../models/toll'
+import { Result } from 'postcss'
 import { useToll } from '../hooks/useToll'
 
 interface Props {
@@ -35,12 +36,26 @@ function CalculatorDisplay({ user, id }: Props) {
     return reduced
   }
 
-  console.log(gettingCandies())
+  const candies = gettingCandies()
+
+  const convertCandiestoRings = (candies: number) => {
+    let goldRings = 0
+    const goats = 0
+    const result = candies / 100
+    const calc = String(result).split('.')
+    console.log(calc)
+    goldRings = calc[0]
+    console.log(result)
+    console.log('gold rings: ', goldRings)
+    return result
+  }
+
+  convertCandiestoRings(candies as number)
 
   return (
     <>
-      <p>Calculate Toll!</p>
-      <p>Total Candies: {gettingCandies()}</p>
+      {/* <p>Calculate Toll!</p> */}
+      <p>Total Candies: Ȼ{gettingCandies()}</p>
     </>
   )
 }
