@@ -128,7 +128,7 @@ export async function seed(knex) {
       year_built: 2018,
       length_meters: 120,
       active_by_users: null,
-      image_path: 'westgate-brdige.jpg',
+      image_path: 'westgate-bridge.jpg',
     },
     {
       id: 13,
