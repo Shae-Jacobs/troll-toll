@@ -35,6 +35,7 @@ router.delete('/:user/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
     await db.getFavouriteById(user, id)
+    res.sendStatus(202)
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')
@@ -43,11 +44,12 @@ router.delete('/:user/:id', async (req, res) => {
 
 //TODO:CheckJWT
 //POST /api/v1/favourites
-router.post('/:user', async (req, res) => {
-  const user = String(req.params.user)
+router.post('/', async (req, res) => {
+  // const user = String(req.params.user)
   const newFave = req.body as Favourite
   try {
-    await db.addFavourite(newFave, user)
+    await db.addFavourite(newFave)
+    res.sendStatus(202)
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')

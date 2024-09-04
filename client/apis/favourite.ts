@@ -2,8 +2,8 @@ import request from 'superagent'
 import { Favourite, FavouriteData } from '../../models/favourite'
 
 //GET 'api/v1/favourite'
-export async function getFavourites() {
-  const result = await request.get(`/api/v1/favourite`)
+export async function getFavourites(user: string) {
+  const result = await request.get(`/api/v1/favourite/${user}`)
   return result.body as FavouriteData[]
 }
 
@@ -15,5 +15,12 @@ export async function getFavouriteById(user: string, id: number) {
 
 //DELETE 'api/v1/favourite/:user/:id'
 export async function deleteFavouriteById(user: string, id: number) {
-  return await request.delete(`/api/v1/favourite/${user}/${id}`)
+  const result = await request.delete(`/api/v1/favourite/${user}/${id}`)
+  console.log(result.statusCode)
+}
+
+//POST 'api/v1/favourite
+export async function addFavourite(newFave: Favourite) {
+  const result = await request.post(`/api/v1/favourite`).send(newFave)
+  console.log(result.statusCode)
 }
