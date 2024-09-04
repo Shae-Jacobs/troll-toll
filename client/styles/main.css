@@ -39,13 +39,16 @@
 /* --- // BUTTONS // ---- */
 
 /* Primary Button */
-.primary_button {
-  @apply rounded-lg bg-accent-4 px-4 py-2 text-white;
-}
 
-/* Secondary Button */
-.secondary_button {
-  @apply rounded-lg bg-accent-1 px-4 py-2;
+@layer components {
+  .primary_button {
+    @apply button rounded-lg bg-accent-4 px-4 py-2 text-white;
+  }
+
+  /* Secondary Button */
+  .secondary_button {
+    @apply button rounded-lg bg-accent-1 px-4 py-2;
+  }
 }
 
 /* --- YOUR MANUAL CSS GOES HERE ---- */
