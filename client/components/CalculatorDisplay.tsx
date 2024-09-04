@@ -36,21 +36,34 @@ function CalculatorDisplay({ user, id }: Props) {
     return reduced
   }
 
-  const candies = gettingCandies()
+  let candies = gettingCandies()
+  let goldRings = 0
+  const goats = 0
 
   const convertCandiestoRings = (candies: number) => {
-    let goldRings = 0
-    const goats = 0
-    const result = candies / 100
-    const calc = String(result).split('.')
-    console.log(calc)
-    goldRings = calc[0]
-    console.log(result)
-    console.log('gold rings: ', goldRings)
-    return result
+    goldRings = Number(Math.floor(candies / 100))
+    candies = Number(candies % 100)
   }
 
+  const convertRingstoGoats = (goldRings: number) => {
+    const goats = Math.floor(candies / 100)
+    candies = candies % 100
+  }
+
+  // const convertCandiestoRings = (candies: number) => {
+  //   let goldRings = 0
+  //   const goats = 0
+  //   const result = candies / 100
+  //   const calc = String(result).split('.')
+  //   console.log(calc)
+  //   goldRings = calc[0]
+  //   console.log(result)
+  //   console.log('gold rings: ', goldRings)
+  //   return result
+  // }
+
   convertCandiestoRings(candies as number)
+  convertRingstoGoats(goldRings as number)
 
   return (
     <>
