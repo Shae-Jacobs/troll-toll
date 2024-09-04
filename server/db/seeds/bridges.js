@@ -15,7 +15,7 @@ export async function seed(knex) {
       length_meters: 1020,
       lanes: 8,
       active_by_users: 'auth0|4321',
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 2,
@@ -25,8 +25,8 @@ export async function seed(knex) {
       year_built: 1910,
       length_meters: 100,
       lanes: 4,
-      active_by_users: 'auth0|4321',
-      image_path: './images/placeholder-image.webp',
+      active_by_users: 'auth0|1234',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ export async function seed(knex) {
       length_meters: 50,
       lanes: null,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ export async function seed(knex) {
       year_built: 1965,
       length_meters: 300,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 5,
@@ -57,7 +57,7 @@ export async function seed(knex) {
       year_built: 1980,
       length_meters: 500,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 6,
@@ -68,7 +68,7 @@ export async function seed(knex) {
       length_meters: 150,
       lanes: 2,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 7,
@@ -78,7 +78,7 @@ export async function seed(knex) {
       year_built: 2010,
       length_meters: 80,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 8,
@@ -88,7 +88,7 @@ export async function seed(knex) {
       year_built: 2005,
       length_meters: 120,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 9,
@@ -98,7 +98,7 @@ export async function seed(knex) {
       year_built: 2015,
       length_meters: 90,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 10,
@@ -108,7 +108,7 @@ export async function seed(knex) {
       year_built: 2008,
       length_meters: 200,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 11,
@@ -118,7 +118,7 @@ export async function seed(knex) {
       year_built: 1988,
       length_meters: 350,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 12,
@@ -128,7 +128,7 @@ export async function seed(knex) {
       year_built: 2018,
       length_meters: 120,
       active_by_users: null,
-      image_path: './images/placeholder-image.webp',
+      image_path: '/images/placeholder-image.webp',
     },
     {
       id: 13,

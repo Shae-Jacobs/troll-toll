@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
-import { useBridges } from '../hooks/useBridges.ts'
+import { useBridges } from '../hooks/useBridge.ts'
 
 export default function Bridges() {
   const { data, isError, isPending, error } = useBridges()
@@ -19,6 +19,7 @@ export default function Bridges() {
         {data.map((bridge) => (
           <div key={bridge.id} aria-label={bridge.name}>
             <Link to={`/bridges/${bridge.id}`}>
+              <img src={bridge.imagePath} alt={bridge.name} />
               <h2>{bridge.name}</h2>
             </Link>
             <Status id={bridge.id} />

@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 // PATCH /api/v1/bridges/:id
 router.patch(
   '/:id',
-  /*checkJwt*/ async (req: JwtRequest, res) => {
+  /*checkJwt,*/ async (req: JwtRequest, res) => {
     const auth0Id = req.auth?.sub
     const id = Number(req.params.id)
 
