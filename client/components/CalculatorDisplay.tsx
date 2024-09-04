@@ -1,17 +1,9 @@
-// import { useQuery } from '@tanstack/react-query'
-// import { getUsersTollsByBridgeId } from '../apis/toll'
-// import { Toll, TollData } from '../../models/toll'
-import { Result } from 'postcss'
 import { useToll } from '../hooks/useToll'
 
 interface Props {
   user: string
   id: number
 }
-
-//1Ȼ is 1 troll rock candy, the smallest division of currency
-// 100 Rock Candies = 1 Gold Ring (AuR) : 10Ȼ = 1AuR
-// 100 Gold Rings = 1 Goat (GT) : 100AuR = 1 GT
 
 function CalculatorDisplay({ user, id }: Props) {
   const { data, isPending, isError, error } = useToll(user, id)
