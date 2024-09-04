@@ -7,7 +7,8 @@ export async function up(knex) {
     table.integer('year_built')
     table.integer('length_meters')
     table.integer('lanes').nullable()
-    table.string('added_by_user')
+    table.string('active_by_users').nullable()
+    table.string('image_path')
   })
 }
 

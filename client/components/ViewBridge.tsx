@@ -6,7 +6,7 @@ export default function ViewBridge() {
   if (isNaN(id)) {
     throw new Error(`Route param "id" is missing orinvalid`)
   }
-}0
+}
 
 //useBridgeId custom hook.
 const bridge = useBridgeId(id)
