@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
         'accent-1': '#CEEAFF',
         'accent-2': '#9DCCF1',
         'accent-3': '#69B1E9',
