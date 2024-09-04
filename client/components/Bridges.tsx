@@ -19,6 +19,7 @@ export default function Bridges() {
         {data.map((bridge) => (
           <div key={bridge.id} aria-label={bridge.name}>
             <Link to={`/bridges/${bridge.id}`}>
+              <img src={bridge.imagePath} alt={bridge.name} />
               <h2>{bridge.name}</h2>
             </Link>
             <Status id={bridge.id} />
