@@ -21,10 +21,11 @@ export default function Bridges() {
       <h1>Auckland Bridges🧌</h1>
       <ul>
         {bridges.map((bridge) => (
-          <div key={bridge.id}>
+           <Link to={`/bridges/${bridge.id}`} key={bridge.id}>
+           <div>
             <h2>{bridge.name}</h2>
-            <Link to={`/bridges/${bridge.id}`}></Link>
-          </div>
+            </div>
+            </Link>
         ))}
       </ul>
     </>
