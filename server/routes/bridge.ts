@@ -18,6 +18,19 @@ router.get('/', async (req, res) => {
   }
 })
 
+// GET /api/v1/bridges/:id
+router.get('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  try {
+    const bridges = await db.getBridgesById(id)
+
+    res.json(bridges)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Something went wrong')
+  }
+})
+
 // PATCH /api/v1/bridges/:id
 router.patch(
   '/:id',
