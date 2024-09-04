@@ -7,9 +7,13 @@ export async function getFavourites() {
   return result.body as FavouriteData[]
 }
 
-//GET 'api/v1/favourites/:user/:id
+//GET 'api/v1/favourites/:user/:id'
 export async function getFavouriteById(user: string, id: number) {
   const result = await request.get(`/api/v1/favourites/${user}/${id}`)
   return result.body as FavouriteData
 }
 
+//DELETE 'api/v1/favourites/:user/:id'
+export async function deleteFavouriteById(user: string, id: number) {
+  return await request.delete(`/api/v1/favourites/${user}/${id}`)
+}
