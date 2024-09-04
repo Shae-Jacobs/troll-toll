@@ -7,3 +7,8 @@ export async function getBridges(): Promise<Bridge[]> {
   const res = await request.get(bridgeURL)
   return res.body
 }
+
+export async function getBridge(id: number): Promise<Bridge> {
+  const res = await request.get(`${bridgeURL}${id}`)
+  return res.body
+}

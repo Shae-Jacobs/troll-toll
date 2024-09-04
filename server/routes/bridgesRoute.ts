@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
   try {
     const bridges = await db.getBridges()
 
+
     res.json(bridges)
   } catch (error) {
     console.error(error)

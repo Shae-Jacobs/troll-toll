@@ -4,7 +4,7 @@ export default function Layout() {
   return (
     <>
       <header>
-        <h1>Large Thumb Digital</h1>
+        <h1>Troll.bridge.app</h1>
       </header>
       <main>
         <Outlet />
