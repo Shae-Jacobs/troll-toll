@@ -2,7 +2,7 @@ import {useBridgeId} from '../hooks/api.ts'
 
 export default function ViewBridge() {
   const params = useParams()
-  const id = NUmber(params.id)
+  const id = Number(params.id)
   if (isNaN(id)) {
     throw new Error(`Route param "id" is missing orinvalid`)
   }
@@ -12,7 +12,7 @@ export default function ViewBridge() {
 const bridge = useBridgeId(id)
 
 if (bridge.isPending) {
-  return (Is Loading...)
+  return ('Is Loading...')
 }
 
 if (bridge.isError) {
