@@ -1,4 +1,3 @@
-
 # Troll Bridge Website Accessibility Guide
 
 ## Primary Web Accessibility Issues - An Overview
@@ -83,3 +82,4 @@ Trolls may have trouble navigating poorly organized sites with unclear direction
 - Button text color: #ffffff for clear readability, even for the oldest and most battle-weary trolls.
 
 By following these guidelines, we ensure that all trolls, regardless of their unique challenges and abilities, can enjoy and navigate our website with ease.
+```

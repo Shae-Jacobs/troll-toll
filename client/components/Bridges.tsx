@@ -1,27 +1,30 @@
-import { getBridges } from '../apis/bridge.ts'
-import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
+import Status from './Status.tsx'
+import RegPatrol from './RegPatrol.tsx'
+import { useBridges } from '../hooks/useBridges.ts'
 
 export default function Bridges() {
-  const {
-    data: bridges,
-    error,
-    isLoading,
-  } = useQuery({ queryKey: ['bridges'], queryFn: getBridges })
+  const { data, isError, isPending, error } = useBridges()
 
-  if (error) {
-    return <p>Your bridges are gone! What a massive error</p>
-  }
-  if (!bridges || isLoading) {
+  if (!data || isPending) {
     return <p>Fetching bridges from auckland...</p>
   }
-
+  if (isError) {
+    return <p>Your bridges are gone! {error.message}</p>
+  }
   return (
     <>
       <h1>Auckland Bridges🧌</h1>
       <ul>
-        {bridges.map((br) => {
-          return <li>{br.name}</li>
-        })}
+        {data.map((bridge) => (
+          <div key={bridge.id} aria-label={bridge.name}>
+            <Link to={`/bridges/${bridge.id}`}>
+              <h2>{bridge.name}</h2>
+            </Link>
+            <Status id={bridge.id} />
+            <RegPatrol id={bridge.id} />
+          </div>
+        ))}
       </ul>
     </>
   )

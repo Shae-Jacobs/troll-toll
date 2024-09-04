@@ -33,6 +33,7 @@
     "jsonwebtoken": "^9.0.2",
     "jwks-rsa": "^2.1.5",
     "knex": "^2.5.1",
+    "nock": "^13.5.5",
     "sqlite3": "^5.1.6",
     "superagent": "^8.1.2"
   },
@@ -40,7 +41,7 @@
     "@auth0/auth0-react": "^2.2.4",
     "@devacademy/eslint-config": "^1.10.1",
     "@tanstack/eslint-plugin-query": "^5.12.2",
-    "@tanstack/react-query": "^5.12.2",
+    "@tanstack/react-query": "^5.53.3",
     "@tanstack/react-query-devtools": "^5.13.3",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.0.0",
