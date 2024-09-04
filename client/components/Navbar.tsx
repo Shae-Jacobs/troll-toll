@@ -1,12 +1,12 @@
-import RedirectList from './RedirectList'
+import Nav from './Nav'
 import Logo from './Logo'
-import Login from './Login'
+import UserAuthArea from './UserAuthArea'
 export default function Navbar() {
   return (
-    <div className="navbar grid grid-cols-[10rem_1fr_auto] place-items-center ">
+    <div className="navbar grid min-h-24 grid-cols-[auto_1fr_auto] items-center gap-16 bg-accent-bg px-16 py-4">
       <Logo />
-      <RedirectList />
-      <Login />
+      <Nav />
+      <UserAuthArea />
     </div>
   )
 }
