@@ -25,7 +25,7 @@ export async function seed(knex) {
       year_built: 1910,
       length_meters: 100,
       lanes: 4,
-      active_by_users: 'auth0|4321',
+      active_by_users: 'auth0|1234',
       image_path: '/images/placeholder-image.webp',
     },
     {

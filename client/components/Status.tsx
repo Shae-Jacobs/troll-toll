@@ -1,10 +1,11 @@
-import { useBridgesById } from '../hooks/useBridges'
+import { useBridgesById } from '../hooks/useBridge'
 
 interface Props {
   id: number
 }
 
 export default function Status({ id }: Props) {
+  // const { getAccessTokenSilently, getIdTokenClaims } = useAuth0()
   const { data: bridges, isPending, isError, error } = useBridgesById(id)
 
   if (isError) {
