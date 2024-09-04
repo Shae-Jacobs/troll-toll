@@ -25,7 +25,7 @@ export default function RegPatrol({ id }: Props) {
 
   const handleClick = async () => {
     // const tokenId = await getIdTokenClaims()
-    // if (bridges.activeByUsers === tokenId?.sub) {
+    // if (bridges.activeByUsers === null || undefined) {
     //   console.error('bridge already active!')
     //   return 'bridge already active'
     // }
@@ -43,7 +43,9 @@ export default function RegPatrol({ id }: Props) {
   return (
     <>
       {!bridges.activeByUsers && (
-        <button onClick={handleClick}>Patrol Bridge</button>
+        <button onClick={handleClick} aria-label="status-button">
+          Patrol Bridge
+        </button>
       )}
     </>
   )
