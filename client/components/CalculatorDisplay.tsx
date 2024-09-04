@@ -36,39 +36,20 @@ function CalculatorDisplay({ user, id }: Props) {
     return reduced
   }
 
-  let candies = gettingCandies()
-  let goldRings = 0
-  const goats = 0
+  const candiesTotal = gettingCandies() as number
 
-  const convertCandiestoRings = (candies: number) => {
-    goldRings = Number(Math.floor(candies / 100))
-    candies = Number(candies % 100)
-  }
+  const totalGoldRings = Number(Math.floor(candiesTotal / 100))
+  const remainingCandies = Number(candiesTotal % 100)
 
-  const convertRingstoGoats = (goldRings: number) => {
-    const goats = Math.floor(candies / 100)
-    candies = candies % 100
-  }
-
-  // const convertCandiestoRings = (candies: number) => {
-  //   let goldRings = 0
-  //   const goats = 0
-  //   const result = candies / 100
-  //   const calc = String(result).split('.')
-  //   console.log(calc)
-  //   goldRings = calc[0]
-  //   console.log(result)
-  //   console.log('gold rings: ', goldRings)
-  //   return result
-  // }
-
-  convertCandiestoRings(candies as number)
-  convertRingstoGoats(goldRings as number)
+  const totalGoats = Number(Math.floor(totalGoldRings / 100))
+  const remainingGoldRings = Number(totalGoldRings % 100)
 
   return (
     <>
-      {/* <p>Calculate Toll!</p> */}
-      <p>Total Candies: Ȼ{gettingCandies()}</p>
+      <p>Total Candies: Ȼ{candiesTotal}</p>
+      <p>Total Candies: Ȼ{remainingCandies}</p>
+      <p>Total Gold Rings: 💍{remainingGoldRings}</p>
+      <p>Total Goats: 🐐{totalGoats}</p>
     </>
   )
 }
