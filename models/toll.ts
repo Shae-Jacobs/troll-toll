@@ -1,7 +1,7 @@
 export interface Toll {
-  usersToken: string,
-  candies: number,
-  timeStamp: string,
+  usersToken: string
+  candies: number
+  timeStamp: string
   bridgesId: number
 }
 
