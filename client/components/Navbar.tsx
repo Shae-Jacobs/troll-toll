@@ -1,12 +1,12 @@
-import Nav from './Nav'
+import RedirectList from './RedirectList'
 import Logo from './Logo'
-import UserAuthArea from './UserAuthArea'
+import Login from './Login'
 export default function Navbar() {
   return (
     <>
       <Logo />
-      <Nav />
-      <UserAuthArea />
+      <RedirectList />
+      <Login />
     </>
   )
 }
