@@ -37,10 +37,11 @@ export async function deleteFavouriteById(
 
 export async function addFavourite(
   newFave: Favourite,
-  usersToken: string,
+  // usersToken: string,
 ): Promise<Favourite> {
-  return db('favourites').where('users_token', usersToken).insert({
+  return db('favourites').insert({
     users_token: newFave.usersToken,
     bridges_id: newFave.bridgesId,
   })
 }
+//.where('users_token', usersToken <<Took this part out for now
