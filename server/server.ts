@@ -1,14 +1,14 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import bridgeRoutes from './routes/bridge'
+import bridgesRoute from './routes/bridgesRoute'
 import tollRoutes from './routes/toll'
 
 const server = express()
 
 server.use(express.json())
 
-server.use('/api/v1/bridges', bridgeRoutes)
+server.use('/api/v1/bridges', bridgesRoute)
 server.use('/api/v1/tolls', tollRoutes)
 
 if (process.env.NODE_ENV === 'production') {
