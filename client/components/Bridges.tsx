@@ -20,6 +20,11 @@ export default function Bridges() {
           <div key={bridge.id} aria-label={bridge.name}>
             <Link to={`/bridges/${bridge.id}`}>
               <h2>{bridge.name}</h2>
+              <img
+                className="max-w-md"
+                alt={`${bridge.name} during the daytime`}
+                src={`/bridges/${bridge.imagePath}`}
+              />
             </Link>
             <Status id={bridge.id} />
             <RegPatrol id={bridge.id} />
