@@ -1,10 +1,10 @@
 import { createRoutesFromElements, Route } from 'react-router-dom'
 
 import Layout from './components/Layout'
-import App from './components/App'
+import Bridges from './components/Bridges'
 
 export default createRoutesFromElements(
   <Route path="/" element={<Layout />}>
-    <Route index element={<App />} />
+    <Route index element={<Bridges />} />
   </Route>,
 )

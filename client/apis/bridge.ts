@@ -7,6 +7,7 @@ export async function getBridges(): Promise<Bridge[]> {
   const res = await request.get(bridgeURL)
   return res.body
 }
+<<<<<<< HEAD
 
 export async function getBridgesById(id: number): Promise<Bridge> {
   const res = await request.get(bridgeURL + id)
@@ -27,3 +28,5 @@ export async function setStatusById({
     .patch(bridgeURL + id)
     .set('Authorization', `Bearer ${usersToken}`)
 }
+=======
+>>>>>>> 6957fa23939ec2dfd8f835b13d456258c9b54f28
