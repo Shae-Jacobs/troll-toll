@@ -13,3 +13,25 @@ export function useFavourites(usersToken: string) {
   })
   return query
 }
+
+export function useFavouritesMutation<TData = unknown, TVariables = unknown>(
+  mutationFn: MutationFunction<TData, TVariables>,
+) {
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['favourites'],
+      })
+    },
+  })
+
+  return mutation
+}
+
+// Update Mutation Hooks
+// export function useAddFavourites() {
+//   return useFavouritesMutation(API.setFavourite)
+// }

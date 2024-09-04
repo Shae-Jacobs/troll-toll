@@ -10,15 +10,6 @@ export async function getFavourites(usersToken: string): Promise<Favourite[]> {
   return result.body as Favourite[]
 }
 
-import request from 'superagent'
-import { Favourite, FavouriteData } from '../../models/favourite'
-
-//GET 'api/v1/favourite'
-export async function getFavourites(user: string) {
-  const result = await request.get(`/api/v1/favourite/${user}`)
-  return result.body as FavouriteData[]
-}
-
 //GET 'api/v1/favourite/:user/:id'
 export async function getFavouriteById(user: string, id: number) {
   const result = await request.get(`/api/v1/favourite/${user}/${id}`)
