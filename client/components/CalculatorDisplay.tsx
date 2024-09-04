@@ -47,9 +47,12 @@ function CalculatorDisplay({ user, id }: Props) {
   return (
     <>
       <p>Total Candies: Ȼ{candiesTotal}</p>
-      <p>Total Candies: Ȼ{remainingCandies}</p>
-      <p>Total Gold Rings: 💍{remainingGoldRings}</p>
-      <p>Total Goats: 🐐{totalGoats}</p>
+      <br />
+      <h2>with conversion, you have:</h2>
+      <p>Candies: Ȼ{remainingCandies}</p>
+      <p>Gold Rings: 💍{remainingGoldRings}</p>
+      <p>Goats: 🐐{totalGoats}</p>
+      <br />
     </>
   )
 }
