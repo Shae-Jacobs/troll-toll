@@ -21,6 +21,11 @@ export default function Bridges() {
             <Link to={`/bridges/${bridge.id}`}>
               <img src={bridge.imagePath} alt={bridge.name} />
               <h2>{bridge.name}</h2>
+              <img
+                className="max-w-md"
+                alt={`${bridge.name} during the daytime`}
+                src={`/bridges/${bridge.imagePath}`}
+              />
             </Link>
             <Status id={bridge.id} />
             <RegPatrol id={bridge.id} />
