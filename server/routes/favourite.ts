@@ -5,10 +5,10 @@ import * as db from '../db/favourite.ts'
 const router = express.Router()
 //TODO:CheckJWT
 //GET /api/v1/favourites/:user
-router.get('/:user/', async (req, res) => {
-  const usersToken = String(req.params.user)
+router.get('/:user', async (req, res) => {
+  const users = req.params.user
   try {
-    const favourites = await db.getFavourites(usersToken)
+    const favourites = await db.getFavourites(users)
     res.json(favourites)
   } catch (error) {
     console.error(error)
@@ -18,7 +18,7 @@ router.get('/:user/', async (req, res) => {
 //TODO:CheckJWT
 //GET /api/v1/favourites/:user/:id
 router.get('/:user/:id', async (req, res) => {
-  const user = String(req.params.user)
+  const user = req.params.user
   const id = Number(req.params.id)
   try {
     const favourite = await db.getFavouriteById(user, id)
