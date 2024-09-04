@@ -1,3 +1,92 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- !! TAILWIND CSS !! ---- */
+
+/* --- // HEADINGS // ---- */
+.heading-1 {
+  @apply text-4xl font-bold;
+}
+
+.heading-2 {
+  @apply text-3xl font-bold;
+}
+
+.heading-3 {
+  @apply text-2xl font-bold;
+}
+
+.heading-4 {
+  @apply text-1xl font-bold;
+}
+
+.paragraph {
+  @apply text-base font-normal;
+}
+
+.small-text {
+  @apply text-sm font-normal;
+}
+
+/* --- // LAYOUT // ---- */
+
+/* This will help get you left/right margins to center your content */
+.container {
+  @apply mx-auto px-4;
+}
+
+/* --- // BUTTONS // ---- */
+
+/* Primary Button */
+.primary_button {
+  @apply button rounded-lg bg-accent-4 px-4 py-2 text-white;
+}
+
+/* Secondary Button */
+.secondary_button {
+  @apply button rounded-lg bg-accent-1 px-4 py-2;
+}
+
+/* --- YOUR MANUAL CSS GOES HERE ---- */
+
+/* Default Browser styling override */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- // BLUE TROLL CUSTOM COLOURS // ---- */
+/* From light to dark */
+
+.troll_blue_100 {
+  color: #ceeaff;
+  background-color: #ceeaff;
+}
+
+.troll_blue_200 {
+  color: #9dccf1;
+  background-color: #9dccf1;
+}
+
+.troll_blue_300 {
+  color: #69b1e9;
+  background-color: #69b1e9;
+}
+
+.troll_blue_400 {
+  color: #1d7eca;
+  background-color: #1d7eca;
+}
+
+.troll_blue_500 {
+  color: #03045e;
+  background-color: #03045e;
+}
+
+/* Optional Accent colour if you feel brave/experimental! */
+.accent-color-coral {
+  color: #ff6f61;
+  background-color: #ff6f61;
+}
