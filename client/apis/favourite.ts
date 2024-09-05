@@ -3,12 +3,14 @@ import { Favourite, FavouriteData } from '../../models/favourite'
 
 //GET 'api/v1/favourites'
 export async function getFavourites(usersToken: string): Promise<Favourite[]> {
-  const result = await request
-    .get(`/api/v1/favourites`)
-    .set('Authorization', `Bearer ${usersToken}`)
+  if (usersToken !== 'wait') {
+    const result = await request
+      .get(`/api/v1/favourites`)
+      .set('Authorization', `Bearer ${usersToken}`)
 
-  return result.body as Favourite[]
-  console.log(result)
+    return result.body as Favourite[]
+  }
+  return []
 }
 
 //GET 'api/v1/favourite/:user/:id'
@@ -24,9 +26,14 @@ export async function deleteFavouriteById(user: string, id: number) {
   return
 }
 
+interface AddFunction {
+  id: number
+  usersToken: string
+}
+
 //POST 'api/v1/favourite
-export async function addFavourite(newFave: Favourite) {
-  const result = await request.post(`/api/v1/favourites`).send(newFave)
+export async function addFavourite({id, usersToken}: AddFunction ) {
+  const result = await request.post(`/api/v1/favourites/${id}`).set('Authorization', `Bearer ${usersToken}`)
   console.log(result.statusCode)
   return
 }

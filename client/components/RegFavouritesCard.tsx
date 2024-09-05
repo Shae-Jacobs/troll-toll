@@ -1,15 +1,33 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
-import { useBridgesById } from '../hooks/useBridges.ts'
+import { useBridgesById } from '../hooks/useBridge.ts'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface Props {
   id: number
 }
 
 export default function RegFavouritesCard({ id }: Props) {
-  const { data: bridge, isError, isPending, error } = useBridgesById(id)
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const {
+    data: bridge,
+    isError,
+    isPending,
+    error,
+    refetch,
+  } = useBridgesById(id)
 
+  const handleInvalidate = (id: number) => {
+    console.log('Invalidating bridges query and refetching data.')
+    queryClient.invalidateQueries({
+      queryKey: ['bridges'],
+    })
+    refetch()
+
+    navigate(`/bridges/${id}`)
+  }
   if (!bridge || isPending) {
     return <p>Fetching bridge from auckland...</p>
   }
@@ -20,13 +38,19 @@ export default function RegFavouritesCard({ id }: Props) {
 
   return (
     <>
-      <div aria-label={bridge.name}>
+      <div key={bridge.id} aria-label={bridge.name}>
         <Link to={`/bridges/${bridge.id}`}>
-          <img src={bridge.imagePath} alt={bridge.name} />
-          <h2>{bridge.name}</h2>
+          <img
+            className="max-h-md w-full object-cover"
+            alt={`${bridge.name} during the daytime`}
+            src={`/bridges/${bridge.imagePath}`}
+          />
+          <h2 className="heading-3">{bridge.name}</h2>
         </Link>
-        <Status id={bridge.id} />
-        <RegPatrol id={bridge.id} />
+        <div className="flex flex-row gap-1 py-2">
+          <Status id={bridge.id} />
+          <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+        </div>
       </div>
     </>
   )
