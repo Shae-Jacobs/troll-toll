@@ -6,7 +6,7 @@ export default function Layout() {
     <div className="page grid min-h-[100svh] grid-rows-[auto_1fr_auto]">
       <header>
         <Navbar />
-        <h1>Troll.bridge.app</h1>
+        <h1 className="text-white">.</h1>
       </header>
       <main>
         <Outlet />
