@@ -25,7 +25,7 @@ export default function RegTrollfile() {
   const [form, setForm] = useState<FormState>({
     activeBridge: null,
     usersName: null,
-    userToken: '',
+    userToken: 'wait',
   })
 
   const {
