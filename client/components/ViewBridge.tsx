@@ -49,9 +49,9 @@ export default function ViewBridge() {
           <span>Car Lanes:</span>
           {` ${bridge.lanes}`}
         </p>
-        {/* <IsAuthenticated> */}
-        <AddFavourite />
-        {/* </IsAuthenticated> */}
+        <IsAuthenticated>
+          <AddFavourite />
+        </IsAuthenticated>
       </div>
     </>
   )

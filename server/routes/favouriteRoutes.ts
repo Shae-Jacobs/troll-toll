@@ -50,7 +50,7 @@ router.get('/:id', async (req: JwtRequest, res) => {
 //DELETE /api/v1/favourites/:id
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id) // const users = req.auth?.sub
-  const users = 'auth0|1234'
+  // const users = 'auth0|1234'
 
   // if (!auth0Id || auth0Id === 'undefined') {
   //   console.error('No auth0Id')
