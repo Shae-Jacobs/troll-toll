@@ -2,7 +2,7 @@ import db from './connection.ts'
 import { Favourite } from '../../models/favourite'
 
 export async function getFavourites(usersToken: string): Promise<Favourite[]> {
-  return db('favourites')
+  return await db('favourites')
     .where('users_token', usersToken)
     .select(
       'favourites.bridges_id as bridgesId',
@@ -15,7 +15,7 @@ export async function getFavouriteById(
   usersToken: string,
   id: number,
 ): Promise<Favourite> {
-  return db('favourites')
+  return await db('favourites')
     .where({ id })
     .where('users_token', usersToken)
     .first(
@@ -29,19 +29,36 @@ export async function deleteFavouriteById(
   id: number,
   usersToken: string,
 ): Promise<void> {
+  const favCheck = await db('favourites')
+    .where('favourites.users_token', usersToken)
+    .andWhere('favourites.bridges_id', id)
+    .select()
+
+  if (!favCheck) {
+    throw new Error('Favourite already deleted')
+  }
+
   return await db('favourites')
-    .where({ id })
-    .where('users_token', usersToken)
+    .where('favourites.users_token', usersToken)
+    .andWhere('favourites.bridges_id', id)
     .delete()
 }
 
 export async function addFavourite(
-  newFave: Favourite,
-  // usersToken: string,
+  id: number,
+  usersToken: string,
 ): Promise<Favourite> {
-  return db('favourites').insert({
-    users_token: newFave.usersToken,
-    bridges_id: newFave.bridgesId,
+  const favCheck = await db('favourites')
+    .where('favourites.bridges_id', id)
+    .andWhere('favourites.users_token', usersToken)
+    .first()
+
+  if (favCheck) {
+    throw new Error('Favourite already added')
+  }
+
+  return await db('favourites').insert({
+    users_token: usersToken,
+    bridges_id: id,
   })
 }
-//.where('users_token', usersToken <<Took this part out for now
