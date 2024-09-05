@@ -13,7 +13,7 @@ export default function ViewBridge() {
   const handleInvalidate = (id: number) => {
     console.log('Invalidating bridges query and refetching data.')
     queryClient.invalidateQueries({
-      queryKey: ['bridges'],
+      queryKey: ['bridge', id],
     })
     refetch()
   }
