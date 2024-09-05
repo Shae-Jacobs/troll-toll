@@ -1,10 +1,5 @@
 import { useAddFavourites } from '../hooks/useFavourite'
 
-// interface Props {
-//   user: string
-//   bridgeId: number
-// }
-
 function AddFavourite() {
   const addFave = useAddFavourites()
   const handleClick = async () => {

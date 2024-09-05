@@ -42,7 +42,6 @@ export function useAddFavourites() {
   })
 }
 
-// Update Mutation Hooks
 // export function useAddFavourites() {
 //   return useFavouritesMutation(API.setFavourite)
 // }

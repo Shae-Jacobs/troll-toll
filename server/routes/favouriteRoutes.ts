@@ -57,7 +57,7 @@ router.delete('/:id', async (req, res) => {
   //   return res.status(401).send('Unauthorized')
   // }
   try {
-    await db.getFavouriteById(users, id)
+    await db.deleteFavouriteById(id, users)
     res.sendStatus(202)
   } catch (error) {
     console.error(error)
