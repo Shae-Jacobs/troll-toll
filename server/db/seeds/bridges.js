@@ -16,6 +16,8 @@ export async function seed(knex) {
       lanes: 8,
       active_by_users: 'auth0|4321',
       image_path: 'auckland-harbour-bridge.jpg',
+      latitude: -36.830291,
+      longitude: 174.745348,
     },
     {
       id: 2,
@@ -27,6 +29,8 @@ export async function seed(knex) {
       lanes: 4,
       active_by_users: 'auth0|4321',
       image_path: 'grafton-bridge.jpg',
+      latitude: -36.8586623,
+      longitude: 174.7598789,
     },
     {
       id: 3,
@@ -38,6 +42,8 @@ export async function seed(knex) {
       lanes: null,
       active_by_users: null,
       image_path: 'jacobs-ladder-bridge.jpg',
+      latitude: -36.84413,
+      longitude: 174.7458869,
     },
     {
       id: 4,
@@ -48,6 +54,8 @@ export async function seed(knex) {
       length_meters: 300,
       active_by_users: null,
       image_path: 'mangere-bridge.jpg',
+      latitude: -36.9513925,
+      longitude: 174.7908623,
     },
     {
       id: 5,
@@ -58,6 +66,8 @@ export async function seed(knex) {
       length_meters: 500,
       active_by_users: null,
       image_path: 'newmarket-viaduct.jpg',
+      latitude: -36.8737293,
+      longitude: 174.7747643,
     },
     {
       id: 6,
@@ -69,6 +79,8 @@ export async function seed(knex) {
       lanes: 2,
       active_by_users: null,
       image_path: 'onehunga-roadbridge.jpg',
+      latitude: -36.9315866,
+      longitude: 174.782292,
     },
     {
       id: 7,
@@ -79,6 +91,8 @@ export async function seed(knex) {
       length_meters: 80,
       active_by_users: null,
       image_path: 'onepoto-bridge.jpg',
+      latitude: -36.8119543,
+      longitude: 174.7425438,
     },
     {
       id: 8,
@@ -89,6 +103,8 @@ export async function seed(knex) {
       length_meters: 120,
       active_by_users: null,
       image_path: 'panmure-bridge.jpg',
+      latitude: -36.9083093,
+      longitude: 174.8557075,
     },
     {
       id: 9,
@@ -99,6 +115,8 @@ export async function seed(knex) {
       length_meters: 90,
       active_by_users: null,
       image_path: 'tamaki-bridge.jpg',
+      latitude: null,
+      longitude: null,
     },
     {
       id: 10,
@@ -109,6 +127,8 @@ export async function seed(knex) {
       length_meters: 200,
       active_by_users: null,
       image_path: 'upper-harbour-bridge.jpg',
+      latitude: -36.787006,
+      longitude: 174.6584125,
     },
     {
       id: 11,
@@ -119,6 +139,8 @@ export async function seed(knex) {
       length_meters: 350,
       active_by_users: null,
       image_path: 'victoria-park-viaduct.jpg',
+      latitude: -36.8462052,
+      longitude: 174.7526055,
     },
     {
       id: 12,
@@ -129,6 +151,8 @@ export async function seed(knex) {
       length_meters: 120,
       active_by_users: null,
       image_path: 'westgate-bridge.jpg',
+      latitude: -36.82214,
+      longitude: 174.6138863,
     },
     {
       id: 13,
@@ -139,6 +163,8 @@ export async function seed(knex) {
       length_meters: 60,
       active_by_users: null,
       image_path: 'wynward-crossing.jpg',
+      latitude: -36.8411838,
+      longitude: 174.7569321,
     },
   ])
 
