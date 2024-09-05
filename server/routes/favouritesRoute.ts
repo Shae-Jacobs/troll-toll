@@ -1,5 +1,4 @@
 import express from 'express'
-import { Favourite } from '../../models/favourite.ts'
 import * as db from '../db/favourite.ts'
 import checkJwt, { JwtRequest } from '../auth0.ts'
 
@@ -25,11 +24,17 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
 
 //TODO:CheckJWT
 //GET /api/v1/favourites/:user/:id
-router.get('/:user/:id', async (req, res) => {
-  const user = req.params.user
+router.get('/:id', async (req: JwtRequest, res) => {
   const id = Number(req.params.id)
+  // const users = req.auth?.sub
+  const users = 'auth0|1234'
+
+  // if (!auth0Id || auth0Id === 'undefined') {
+  //   console.error('No auth0Id')
+  //   return res.status(401).send('Unauthorized')
+  // }
   try {
-    const favourite = await db.getFavouriteById(user, id)
+    const favourite = await db.getFavouriteById(users, id)
     res.json(favourite)
   } catch (error) {
     console.error(error)
@@ -38,11 +43,21 @@ router.get('/:user/:id', async (req, res) => {
 })
 //TODO:CheckJWT
 //DELETE /api/v1/favourites/:id
-router.delete('/:user/:id', async (req, res) => {
-  const user = String(req.params.user)
+router.delete('/:id', checkJwt, async (req: JwtRequest, res) => {
+  const users = req.auth?.sub
   const id = Number(req.params.id)
+
+  if (!id || id < 1) {
+    console.error('No Bridge Found')
+    return res.status(400).send('Bad request')
+  }
+
+  if (!users || users === 'undefined') {
+    console.error('No auth0Id')
+    return res.status(401).send('Unauthorized')
+  }
   try {
-    await db.getFavouriteById(user, id)
+    await db.deleteFavouriteById(id, users)
     res.sendStatus(202)
   } catch (error) {
     console.error(error)
@@ -52,12 +67,23 @@ router.delete('/:user/:id', async (req, res) => {
 
 //TODO:CheckJWT
 //POST /api/v1/favourites
-router.post('/', async (req, res) => {
-  // const user = String(req.params.user)
-  const newFave = req.body as Favourite
+router.post('/:id', checkJwt, async (req: JwtRequest, res) => {
+  const users = req.auth?.sub
+  const id = Number(req.params.id)
+
+  if (!id || id < 1) {
+    console.error('No Bridge Found')
+    return res.status(400).send('Bad request')
+  }
+
+  if (!users || users === 'undefined') {
+    console.error('No auth0Id')
+    return res.status(401).send('Unauthorized')
+  }
+
   try {
-    await db.addFavourite(newFave)
-    res.sendStatus(202)
+    await db.addFavourite(id, users)
+    res.sendStatus(201)
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')

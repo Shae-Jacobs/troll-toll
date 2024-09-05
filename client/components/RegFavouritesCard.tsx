@@ -38,7 +38,7 @@ export default function RegFavouritesCard({ id }: Props) {
 
   return (
     <>
-      <div key={bridge.id} aria-label={bridge.name}>
+      <div aria-label={bridge.name}>
         <Link to={`/bridges/${bridge.id}`}>
           <img
             className="max-h-md w-full object-cover"
