@@ -18,7 +18,7 @@ export default function Map() {
   const { data: bridge, error, isPending } = useBridgesById(id)
 
   if (isNaN(id)) {
-    throw new Error(`Route param "id" is missing orinvalid`)
+    throw new Error(`Route param "id" is missing or invalid`)
   }
 
   if (!bridge || isPending) {
@@ -30,14 +30,14 @@ export default function Map() {
   const center =
     bridge.latitude && bridge.longitude
       ? {
-          lat: parseFloat(bridge.latitude),
-          lng: parseFloat(bridge.longitude),
+          lat: bridge.latitude,
+          lng: bridge.longitude,
         }
       : defaultCenter
   console.log(center)
   return (
     <>
-      <section className="mx-auto my-8 w-1/2">
+      <section className="mx-auto my-8 w-1/2 rounded-md border-8 border-accent-4">
         <LoadScript googleMapsApiKey="">
           <GoogleMap
             mapContainerStyle={containerStyle}
