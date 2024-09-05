@@ -39,7 +39,9 @@ export default function ViewBridge() {
           <div className="flex items-center pb-6">
             <button className="primary_button mr-6">Fav Button</button>
             <RegPatrol id={bridge.id} />
-            <Status id={bridge.id} />
+            <div className="ml-2">
+              <Status id={bridge.id} />
+            </div>
           </div>
 
           <div>
