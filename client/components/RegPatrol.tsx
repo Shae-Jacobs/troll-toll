@@ -50,12 +50,12 @@ export default function RegPatrol({ onInvalidated, id }: Props) {
 
     updateStatus.mutate({ id: id, usersToken: token }, mutationOptions)
   }
-  console.log(id, bridges.activeByUsers)
+
   return (
     <>
       {!bridges.activeByUsers && (
         <button
-          className="rounded-lg bg-accent-1 px-4 py-2"
+          className="rounded-lg bg-accent-4 px-4 py-2 text-white"
           onClick={handleClick}
           aria-label="status-button"
         >

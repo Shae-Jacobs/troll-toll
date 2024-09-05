@@ -10,29 +10,22 @@ import RegFavouritesCard from './RegFavouritesCard'
 type FormState =
   | {
       activeBridge: Bridge | null | undefined
-      usersToken: string
       usersName: string | null
+      userToken: string
     }
   | {
       activeBridge: null
-      usersToken: string
       usersName: null
+      userToken: string
     }
 
-const tokenId = {
-  sub: 'auth0|1234',
-  preferred_username: 'NotGrumpy',
-  nickname: 'Grumpy',
-  name: 'Grumplton The Third',
-}
-
 export default function RegTrollfile() {
-  const { getIdTokenClaims } = useAuth0()
+  const { user, getAccessTokenSilently } = useAuth0()
 
   const [form, setForm] = useState<FormState>({
     activeBridge: null,
-    usersToken: '',
     usersName: null,
+    userToken: '',
   })
 
   const {
@@ -47,33 +40,36 @@ export default function RegTrollfile() {
     isPending: favsPending,
     isError: favsIsError,
     error: favsError,
-  } = useFavourites(form.usersToken)
+  } = useFavourites(form.userToken)
 
   useEffect(() => {
     const checkUserToken = async () => {
-      // const tokenId = await getIdTokenClaims()
-      if (tokenId?.sub && bridges) {
-        setForm({
-          activeBridge: bridges.find(
-            (bridge) => bridge.activeByUsers === tokenId.sub,
-          ),
-          usersName:
-            tokenId.preferred_username ||
-            tokenId.nickname ||
-            tokenId.name ||
-            null,
-          usersToken: tokenId?.sub,
+      await getAccessTokenSilently()
+        .catch(() => {
+          console.error('Login Required')
+          return 'undefined'
         })
-      }
+        .then((tokenId) => {
+          if (bridges) {
+            setForm({
+              activeBridge: bridges.find(
+                (bridge) => bridge.activeByUsers === user?.sub,
+              ),
+              usersName: user?.preferred_username || user?.name || null,
+              userToken: tokenId,
+            })
+          }
+        })
     }
 
     checkUserToken()
   }, [
-    getIdTokenClaims,
     bridges,
-    favourites,
-    form.usersToken,
     form.activeBridge,
+    user?.preferred_username,
+    user?.name,
+    getAccessTokenSilently,
+    user?.sub,
   ])
 
   if (bridgesPending || favsPending) {
@@ -90,38 +86,50 @@ export default function RegTrollfile() {
 
   return (
     <>
-      <section>
-        <h1>{`${form.usersName}'s Trollfile`}</h1>
-      </section>
-      <section>
+      <div className="container">
+        <section className=" flex flex-row gap-1 py-2">
+          <img
+            className="size-20 rounded-full"
+            src={user?.picture || user?.profile}
+            alt={user?.nickname || user?.name}
+          />
+          <h1 className="heading-1 my-4">{`${form.usersName}'s Trollfile`}</h1>
+        </section>
         <h2>Currently Patrolling:</h2>
-        {form.activeBridge !== null && form.activeBridge !== undefined && (
-          <div key={form.activeBridge.id} aria-label={form.activeBridge.name}>
-            <Link to={`/bridges/${form.activeBridge.id}`}>
-              <img
-                src={form.activeBridge.imagePath}
-                alt={form.activeBridge.name}
-              />
-              <h3>{form.activeBridge.name}</h3>
-            </Link>
-            <Status id={form.activeBridge.id} />
-          </div>
-        )}
-      </section>
-      <section>
-        <h2>Favourites:</h2>
-        <ul>
-          {favourites?.map((favourite) => {
-            if (!(favourite.bridgesId === form.activeBridge?.id))
-              return (
-                <RegFavouritesCard
-                  key={favourite.bridgesId}
-                  id={favourite.bridgesId}
+        <section className="grid grid-cols-2 gap-1 border-purple-900">
+          {form.activeBridge !== null && form.activeBridge !== undefined && (
+            <div key={form.activeBridge.id} aria-label={form.activeBridge.name}>
+              <Link to={`/bridges/${form.activeBridge.id}`}>
+                <img
+                  className="max-h-md w-full object-cover"
+                  alt={`${form.activeBridge.name} during the daytime`}
+                  src={`/bridges/${form.activeBridge.imagePath}`}
                 />
-              )
-          })}
-        </ul>
-      </section>
+                <h2 className="heading-3">{form.activeBridge.name}</h2>
+              </Link>
+              <div className="flex flex-row gap-1 py-2">
+                <Status id={form.activeBridge.id} />
+              </div>
+            </div>
+          )}
+        </section>
+        <section>
+          <h2>Favourites:</h2>
+          <div className="container">
+            <ul className="grid grid-cols-3 gap-4 border-purple-900">
+              {favourites?.map((favourite) => {
+                if (!(favourite.bridgesId === form.activeBridge?.id))
+                  return (
+                    <RegFavouritesCard
+                      key={favourite.bridgesId}
+                      id={favourite.bridgesId}
+                    />
+                  )
+              })}
+            </ul>
+          </div>
+        </section>
+      </div>
     </>
   )
 }
