@@ -28,6 +28,8 @@ export async function getBridgesById(id: number): Promise<Bridge> {
       'bridges.lanes',
       'bridges.active_by_users as activeByUsers',
       'bridges.image_path as imagePath',
+      'bridges.longitude as longitude',
+      'bridges.latitude as latitude',
     )
 }
 

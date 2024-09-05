@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useBridgesById } from '../hooks/useBridges.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
-
+import Map from './Map.tsx'
 export default function ViewBridge() {
   const params = useParams()
   const id = Number(params.id)
@@ -48,6 +48,7 @@ export default function ViewBridge() {
           {` ${bridge.lanes}`}
         </p>
       </div>
+      <Map />
     </>
   )
 }
