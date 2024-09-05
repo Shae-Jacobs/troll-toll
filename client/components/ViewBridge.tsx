@@ -29,8 +29,10 @@ export default function ViewBridge() {
           alt={`${bridge.name} during the daytime`}
           src={`/bridges/${bridge.imagePath}`}
         />
-        <Status id={bridge.id} />
-        <RegPatrol id={bridge.id} />
+        <div className="flex flex-row gap-1 py-2">
+          <Status id={bridge.id} />
+          <RegPatrol id={bridge.id} onInvalidated={() => null} />
+        </div>
         <p>
           <span>Bridge Type:</span>
           {` ${bridge.type}`}

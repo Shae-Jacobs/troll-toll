@@ -6,26 +6,22 @@ import checkJwt, { JwtRequest } from '../auth0.ts'
 const router = express.Router()
 //TODO:CheckJWT
 //GET /api/v1/favourites/:user
-router.get(
-  '/',
-  /*checkJwt,*/ async (req: JwtRequest, res) => {
-    // const users = req.auth?.sub
-    const users = 'auth0|1234'
+router.get('/', checkJwt, async (req: JwtRequest, res) => {
+  const users = req.auth?.sub
 
-    // if (!auth0Id || auth0Id === 'undefined') {
-    //   console.error('No auth0Id')
-    //   return res.status(401).send('Unauthorized')
-    // }
+  if (!users || users === 'undefined') {
+    console.error('No auth0Id')
+    return res.status(401).send('Unauthorized')
+  }
 
-    try {
-      const favourites = await db.getFavourites(users)
-      res.json(favourites)
-    } catch (error) {
-      console.error(error)
-      res.status(500).send('Something went wrong')
-    }
-  },
-)
+  try {
+    const favourites = await db.getFavourites(users)
+    res.json(favourites)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Something went wrong')
+  }
+})
 
 //TODO:CheckJWT
 //GET /api/v1/favourites/:user/:id

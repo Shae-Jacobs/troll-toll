@@ -1,7 +1,7 @@
 import express from 'express'
 import * as Path from 'node:path'
 import bridgesRoute from './routes/bridgesRoute'
-import favouritesRoute from './routes/favouriteRoute'
+import favouritesRoute from './routes/favouritesRoute'
 
 const server = express()
 
