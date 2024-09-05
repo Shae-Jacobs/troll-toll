@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom'
 import { useBridgesById } from '../hooks/useBridges.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
+import AddFavourite from './AddFavourite.tsx'
+import IsAuthenticated from './IsAuthenticated.tsx'
 
 export default function ViewBridge() {
   const params = useParams()
@@ -47,6 +49,9 @@ export default function ViewBridge() {
           <span>Car Lanes:</span>
           {` ${bridge.lanes}`}
         </p>
+        <IsAuthenticated>
+          <AddFavourite />
+        </IsAuthenticated>
       </div>
     </>
   )

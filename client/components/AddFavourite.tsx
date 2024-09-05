@@ -14,7 +14,12 @@ function AddFavourite() {
   }
   return (
     <div>
-      <button onClick={handleClick}>Add to favourites</button>
+      <button
+        className="button bg-accent-1 rounded-lg px-4 py-2"
+        onClick={handleClick}
+      >
+        Add to favourites
+      </button>
     </div>
   )
 }
