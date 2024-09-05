@@ -24,7 +24,7 @@ export default function RegPatrol({ id }: Props) {
   }
 
   const handleClick = async () => {
-    if (bridges.activeByUsers === null || undefined) {
+    if (bridges.activeByUsers !== null || undefined) {
       console.error('bridge already active!')
       return 'bridge already active'
     }
