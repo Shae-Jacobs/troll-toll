@@ -16,7 +16,7 @@ const INITIAL_BRIDGES = [
     length_meters: 1020,
     lanes: 8,
     active_by_users: 'auth0|4321',
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'auckland-harbour-bridge.jpg',
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const INITIAL_BRIDGES = [
     length_meters: 100,
     lanes: 4,
     active_by_users: 'auth0|4321',
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'grafton-bridge.jpg',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const INITIAL_BRIDGES = [
     length_meters: 50,
     lanes: null,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'jacobs-ladder-bridge.jpg',
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const INITIAL_BRIDGES = [
     year_built: 1965,
     length_meters: 300,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'mangere-bridge.jpg',
   },
   {
     id: 5,
@@ -58,7 +58,7 @@ const INITIAL_BRIDGES = [
     year_built: 1980,
     length_meters: 500,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'newmarket-viaduct.jpg',
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const INITIAL_BRIDGES = [
     length_meters: 150,
     lanes: 2,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'onehunga-harbour-road.jpg',
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const INITIAL_BRIDGES = [
     year_built: 2010,
     length_meters: 80,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'onepoto-bridge.jpg',
   },
   {
     id: 8,
@@ -89,7 +89,7 @@ const INITIAL_BRIDGES = [
     year_built: 2005,
     length_meters: 120,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'panmure-bridge.jpg',
   },
   {
     id: 9,
@@ -99,7 +99,7 @@ const INITIAL_BRIDGES = [
     year_built: 2015,
     length_meters: 90,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'tamaki-bridge.jpg',
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ const INITIAL_BRIDGES = [
     year_built: 2008,
     length_meters: 200,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'upper-harbour-bridge.jpg',
   },
   {
     id: 11,
@@ -119,7 +119,7 @@ const INITIAL_BRIDGES = [
     year_built: 1988,
     length_meters: 350,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'victoria-park-viaduct.jpg',
   },
   {
     id: 12,
@@ -129,7 +129,7 @@ const INITIAL_BRIDGES = [
     year_built: 2018,
     length_meters: 120,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'westgate-bridge.jpg',
   },
   {
     id: 13,
@@ -139,7 +139,7 @@ const INITIAL_BRIDGES = [
     year_built: 2012,
     length_meters: 60,
     active_by_users: null,
-    image_path: '/images/placeholder-image.webp',
+    image_path: 'wynward-crossing.jpg',
   },
 ]
 
@@ -182,7 +182,7 @@ describe('updating a bridge status', () => {
         year_built: 1980,
         length_meters: 500,
         active_by_users: 'auth0|1234',
-        image_path: './images/placeholder-image.webp',
+        image_path: 'newmarket-viaduct.jpg',
       })
 
     await user.click(button)
