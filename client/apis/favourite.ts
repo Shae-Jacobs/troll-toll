@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Favourite } from '../../models/favourite'
+import { Favourite, FavouriteData } from '../../models/favourite'
 
 //GET 'api/v1/favourites'
 export async function getFavourites(usersToken: string): Promise<Favourite[]> {

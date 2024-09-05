@@ -23,3 +23,5 @@ function AddFavourite() {
     </div>
   )
 }
+
+export default AddFavourite
