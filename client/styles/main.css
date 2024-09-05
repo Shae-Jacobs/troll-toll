@@ -97,3 +97,9 @@
   color: #ff6f61;
   background-color: #ff6f61;
 }
+
+.emoji {
+  font-size: 2em; /* Increase the size of the emoji */
+  vertical-align: middle; /* Align emoji with the text */
+  margin: 0 5px; /* Adjust the spacing as needed */
+}
