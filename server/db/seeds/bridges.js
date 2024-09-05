@@ -68,7 +68,7 @@ export async function seed(knex) {
       length_meters: 150,
       lanes: 2,
       active_by_users: null,
-      image_path: 'onehunga-harbour-road.jpg',
+      image_path: 'onehunga-roadbridge.jpg',
     },
     {
       id: 7,
