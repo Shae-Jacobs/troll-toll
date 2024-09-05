@@ -8,4 +8,6 @@ export interface Bridge {
   lanes: number | null
   activeByUsers?: string | null
   imagePath: string
+  longitude: number
+  latitude: number
 }

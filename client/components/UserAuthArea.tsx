@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import IsAuthenticated from './IsAuthenticated'
 import NotAuthenticated from './NotAuthenticated'
+import { Link } from 'react-router-dom'
 
 function UserAuthArea() {
   const { loginWithRedirect, logout, user } = useAuth0()
@@ -11,14 +12,16 @@ function UserAuthArea() {
     <>
       <IsAuthenticated>
         <div className="user-auth-area flex gap-4">
-          <div className="flex items-center gap-2">
-            <img
-              src={user?.picture}
-              alt={user?.nickname}
-              className="size-8 rounded-full"
-            ></img>
-            <p>{user?.name}</p>
-          </div>
+          <Link to="/trollfile">
+            <div className="flex items-center gap-2">
+              <img
+                src={user?.picture}
+                alt={user?.nickname}
+                className="size-8 rounded-full"
+              ></img>
+              <p>{user?.name}</p>
+            </div>
+          </Link>
           <button
             className="button rounded-lg bg-accent-1 px-4 py-2"
             onClick={handleLogOut}

@@ -19,25 +19,25 @@ export default function Status({ id }: Props) {
 
   return (
     <>
-      {bridges.activeByUsers && (
+      {bridges.activeByUsers ? (
         <div
-          className="secondary_button mr-6 flex flex-row"
+          className="secondary_button mr-6 flex items-center"
           aria-label="Active"
         >
-          {bridges.activeByUsers === user?.sub
-            ? 'Currently Patrolling '
-            : 'Active '}
-          <div className="z-2 mx-1 my-2 h-4 w-4 rounded-full border-2 border-white bg-green-400"></div>
+          <span className="mr-2 text-sm">
+            {bridges.activeByUsers === user?.sub
+              ? 'Currently Patrolling'
+              : 'Active'}
+          </span>
+          <div className="h-4 w-4 rounded-full border-2 border-white bg-green-400"></div>
         </div>
-      )}
-
-      {!bridges.activeByUsers && (
+      ) : (
         <div
-          className="secondary_button mr-6 flex flex-row"
+          className="secondary_button mr-6 flex items-center"
           aria-label="Inactive"
         >
-          Inactive{' '}
-          <div className="z-2 mx-1 my-2 h-4 w-4 rounded-full border-2 border-white bg-gray-400"></div>
+          <span className="mr-2 text-sm">Inactive</span>
+          <div className="h-4 w-4 rounded-full border-2 border-white bg-gray-400"></div>
         </div>
       )}
     </>
