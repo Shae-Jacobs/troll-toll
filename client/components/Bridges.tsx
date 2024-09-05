@@ -53,11 +53,14 @@ export default function Bridges() {
     <>
       <h1 className="heading-1 py-10 text-center">Auckland Bridges🧌</h1>
       <div className="container">
-        <ul className="grid grid-cols-3 gap-4 border-purple-900">
+        <ul className="grid grid-cols-[repeat(auto-fit,minmax(24rem,1fr))] gap-x-8 gap-y-16 border-purple-900">
           {data.map((bridge) => (
             <div key={bridge.id} aria-label={bridge.name}>
-              <Link to={`/bridges/${bridge.id}`}>
-                <div className="w-50 h-40 overflow-hidden">
+              <Link
+                to={`/bridges/${bridge.id}`}
+                className="grid grid-cols-[1fr_auto] grid-rows-[auto_auto] gap-2"
+              >
+                <div className="w-50 col-span-2 h-40 overflow-hidden">
                   <img
                     className="h-full w-full object-cover"
                     alt={`${bridge.name} during the daytime`}
@@ -65,18 +68,19 @@ export default function Bridges() {
                   />
                 </div>
                 <h2 className="heading-3">{bridge.name}</h2>
+
+                <Status id={bridge.id} />
               </Link>
               <div className="flex flex-row gap-1 py-2">
-                <Status id={bridge.id} />
-                <IsAuthenticated>
-                  <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
-                </IsAuthenticated>
                 <IsAuthenticated>
                   <AddFavourite
                     token={token}
                     id={bridge.id}
                     onInvalidated={() => null}
                   />
+                </IsAuthenticated>
+                <IsAuthenticated>
+                  <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
                 </IsAuthenticated>
               </div>
             </div>

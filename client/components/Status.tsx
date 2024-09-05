@@ -20,10 +20,7 @@ export default function Status({ id }: Props) {
   return (
     <>
       {bridges.activeByUsers ? (
-        <div
-          className="secondary_button mr-6 flex items-center"
-          aria-label="Active"
-        >
+        <div className="flex items-center" aria-label="Active">
           <span className="mr-2 text-sm">
             {bridges.activeByUsers === user?.sub
               ? 'Currently Patrolling'
@@ -32,10 +29,7 @@ export default function Status({ id }: Props) {
           <div className="h-4 w-4 rounded-full border-2 border-white bg-green-400"></div>
         </div>
       ) : (
-        <div
-          className="secondary_button mr-6 flex items-center"
-          aria-label="Inactive"
-        >
+        <div className=" flex items-center" aria-label="Inactive">
           <span className="mr-2 text-sm">Inactive</span>
           <div className="h-4 w-4 rounded-full border-2 border-white bg-gray-400"></div>
         </div>

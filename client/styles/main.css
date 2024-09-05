@@ -46,7 +46,7 @@
 
 @layer components {
   .primary_button {
-    @apply rounded-lg bg-accent-4 px-4 py-2 text-white;
+    @apply rounded-lg bg-accent-5 px-4 py-2 text-white;
   }
 
   /* Secondary Button */

@@ -13,13 +13,14 @@ function UserAuthArea() {
       <IsAuthenticated>
         <div className="user-auth-area flex gap-4">
           <Link to="/trollfile">
-            <div className="flex items-center gap-2">
+            <div className="grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-2 gap-y-0">
               <img
                 src={user?.picture}
                 alt={user?.nickname}
-                className="size-8 rounded-full"
+                className="row-span-2 size-8 rounded-full"
               ></img>
               <p>{user?.name}</p>
+              <p className="text-xs">View Trollfile</p>
             </div>
           </Link>
           <button
@@ -31,10 +32,7 @@ function UserAuthArea() {
         </div>
       </IsAuthenticated>
       <NotAuthenticated>
-        <button
-          className="button rounded-lg bg-accent-4 px-4 py-2 text-white"
-          onClick={handleLogIn}
-        >
+        <button className="primary_button" onClick={handleLogIn}>
           Log In
         </button>
       </NotAuthenticated>
