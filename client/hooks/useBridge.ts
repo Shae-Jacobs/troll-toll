@@ -34,7 +34,7 @@ export function useBridgesMutation<TData = unknown, TVariables = unknown>(
     mutationFn,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['bridges', 'status'],
+        queryKey: ['bridges'],
       })
     },
   })

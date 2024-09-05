@@ -1,16 +1,26 @@
 import { useParams } from 'react-router-dom'
-import { useBridgesById } from '../hooks/useBridges.ts'
+import { useBridgesById } from '../hooks/useBridge.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import CalculatorDisplay from './CalculatorDisplay.tsx'
 import IsAuthenticated from './IsAuthenticated.tsx'
+import { useQueryClient } from '@tanstack/react-query'
 
 export default function ViewBridge() {
+  const queryClient = useQueryClient()
   const { user } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
-  const { data: bridge, error, isPending } = useBridgesById(id)
+  const { data: bridge, error, isPending, refetch } = useBridgesById(id)
+
+  const handleInvalidate = (id: number) => {
+    console.log('Invalidating bridges query and refetching data.')
+    queryClient.invalidateQueries({
+      queryKey: ['bridge', id],
+    })
+    refetch()
+  }
 
   if (isNaN(id)) {
     throw new Error(`Route param "id" is missing orinvalid`)
@@ -41,10 +51,10 @@ export default function ViewBridge() {
           </div>
 
           <div className="flex items-center pb-6">
-            <button className="primary_button mr-6">Fav Button</button>
-            <RegPatrol id={bridge.id} />
-            <div className="ml-2">
+            <div className="flex flex-row gap-1 py-2">
+              <button className="primary_button mr-6">Fav Button</button>
               <Status id={bridge.id} />
+              <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
             </div>
           </div>
 

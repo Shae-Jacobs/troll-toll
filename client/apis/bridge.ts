@@ -24,6 +24,6 @@ export async function setStatusById({
   usersToken,
 }: StatusFunction): Promise<void> {
   await request
-    .patch(bridgeURL + id)
+    .patch(bridgeURL + `/${id}`)
     .set('Authorization', `Bearer ${usersToken}`)
 }
