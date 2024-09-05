@@ -4,11 +4,33 @@ import RegPatrol from './RegPatrol.tsx'
 import { useBridges } from '../hooks/useBridge.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import IsAuthenticated from './IsAuthenticated.tsx'
+import AddFavourite from './RegAddFavourites.tsx'
+import { useCallback, useEffect, useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Bridges() {
+  const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
   const { data, isError, isPending, error, refetch } = useBridges()
   const queryClient = useQueryClient()
+  const [token, setToken] = useState('wait')
+
+  const fetchToken = useCallback(async () => {
+    try {
+      const tokenId = await getAccessTokenSilently()
+      setToken(tokenId)
+      return tokenId
+    } catch {
+      setToken('undefined')
+      return 'undefined'
+    }
+  }, [getAccessTokenSilently])
+
+  useEffect(() => {
+    if (token === 'wait') {
+      fetchToken()
+    }
+  }, [fetchToken, token])
 
   const handleInvalidate = (id: number) => {
     console.log('Invalidating bridges query and refetching data.')
@@ -48,6 +70,13 @@ export default function Bridges() {
                 <Status id={bridge.id} />
                 <IsAuthenticated>
                   <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+                </IsAuthenticated>
+                <IsAuthenticated>
+                  <AddFavourite
+                    token={token}
+                    id={bridge.id}
+                    onInvalidated={() => null}
+                  />
                 </IsAuthenticated>
               </div>
             </div>

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useBridges } from '../hooks/useBridge'
-import { useFavourites } from '../hooks/useFavourite'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import Status from './Status'
 import { Bridge } from '../../models/bridge'
-import RegFavouritesCard from './RegFavouritesCard'
+import RegFavouritesList from './RegFavouritesList'
 
 type FormState =
   | {
@@ -35,31 +34,21 @@ export default function RegTrollfile() {
     error: bridgesError,
   } = useBridges()
 
-  const {
-    data: favourites = [],
-    isPending: favsPending,
-    isError: favsIsError,
-    error: favsError,
-  } = useFavourites(form.userToken)
-
   useEffect(() => {
     const checkUserToken = async () => {
-      await getAccessTokenSilently()
-        .catch(() => {
-          console.error('Login Required')
-          return 'undefined'
+      const token = await getAccessTokenSilently().catch(() => {
+        console.error('Login Required')
+        return 'undefined'
+      })
+      if (bridges && token) {
+        setForm({
+          activeBridge: bridges.find(
+            (bridge) => bridge.activeByUsers === user?.sub,
+          ),
+          usersName: user?.preferred_username || user?.name || null,
+          userToken: token,
         })
-        .then((tokenId) => {
-          if (bridges) {
-            setForm({
-              activeBridge: bridges.find(
-                (bridge) => bridge.activeByUsers === user?.sub,
-              ),
-              usersName: user?.preferred_username || user?.name || null,
-              userToken: tokenId,
-            })
-          }
-        })
+      }
     }
 
     checkUserToken()
@@ -72,12 +61,8 @@ export default function RegTrollfile() {
     user?.sub,
   ])
 
-  if (bridgesPending || favsPending) {
+  if (bridgesPending) {
     return <p>Checking Status...</p>
-  }
-
-  if (favsIsError) {
-    return <p>Something went wrong {favsError.message}</p>
   }
 
   if (bridgesIsError) {
@@ -116,17 +101,10 @@ export default function RegTrollfile() {
         <section>
           <h2>Favourites:</h2>
           <div className="container">
-            <ul className="grid grid-cols-3 gap-4 border-purple-900">
-              {favourites?.map((favourite) => {
-                if (!(favourite.bridgesId === form.activeBridge?.id))
-                  return (
-                    <RegFavouritesCard
-                      key={favourite.bridgesId}
-                      id={favourite.bridgesId}
-                    />
-                  )
-              })}
-            </ul>
+            <RegFavouritesList
+              id={form.activeBridge?.id || null}
+              token={form?.userToken || 'wait'}
+            />
           </div>
         </section>
       </div>

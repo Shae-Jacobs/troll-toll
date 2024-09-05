@@ -1,18 +1,40 @@
 import { useParams } from 'react-router-dom'
-import { useBridgesById } from '../hooks/useBridge.ts'
+import { useBridgesById } from '../hooks/useBridge'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import CalculatorDisplay from './CalculatorDisplay.tsx'
 import IsAuthenticated from './IsAuthenticated.tsx'
 import { useQueryClient } from '@tanstack/react-query'
+import AddFavourite from './RegAddFavourites.tsx'
+import { useEffect, useState, useCallback } from 'react'
 
 export default function ViewBridge() {
+  const { getAccessTokenSilently } = useAuth0()
   const queryClient = useQueryClient()
   const { user } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
+  const [token, setToken] = useState('wait')
+
   const { data: bridge, error, isPending, refetch } = useBridgesById(id)
+
+  const fetchToken = useCallback(async () => {
+    try {
+      const tokenId = await getAccessTokenSilently()
+      setToken(tokenId)
+      return tokenId
+    } catch {
+      setToken('undefined')
+      return 'undefined'
+    }
+  }, [getAccessTokenSilently])
+
+  useEffect(() => {
+    if (token === 'wait') {
+      fetchToken()
+    }
+  }, [fetchToken, token])
 
   const handleInvalidate = (id: number) => {
     console.log('Invalidating bridges query and refetching data.')
@@ -23,7 +45,7 @@ export default function ViewBridge() {
   }
 
   if (isNaN(id)) {
-    throw new Error(`Route param "id" is missing orinvalid`)
+    throw new Error(`Route param "id" is missing or invalid`)
   }
 
   if (isPending) {
@@ -52,10 +74,16 @@ export default function ViewBridge() {
 
           <div className="flex items-center pb-6">
             <div className="flex flex-row gap-1 py-2">
-              <button className="primary_button mr-6">Fav Button</button>
               <Status id={bridge.id} />
               <IsAuthenticated>
                 <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+              </IsAuthenticated>
+              <IsAuthenticated>
+                <AddFavourite
+                  token={token}
+                  id={bridge.id}
+                  onInvalidated={handleInvalidate}
+                />
               </IsAuthenticated>
             </div>
           </div>
