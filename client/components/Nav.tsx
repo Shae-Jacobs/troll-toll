@@ -8,7 +8,7 @@ export default function Nav() {
         All Bridges
       </NavLink>
       <IsAuthenticated>
-        <NavLink to="/" className="px-4 py-2">
+        <NavLink to="/trollfile" className="px-4 py-2">
           Dashboard
         </NavLink>
       </IsAuthenticated>
