@@ -3,6 +3,7 @@ import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 import { useBridges } from '../hooks/useBridge.ts'
 import { useQueryClient } from '@tanstack/react-query'
+import IsAuthenticated from './IsAuthenticated.tsx'
 
 export default function Bridges() {
   const navigate = useNavigate()
@@ -45,7 +46,9 @@ export default function Bridges() {
               </Link>
               <div className="flex flex-row gap-1 py-2">
                 <Status id={bridge.id} />
-                <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+                <IsAuthenticated>
+                  <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+                </IsAuthenticated>
               </div>
             </div>
           ))}

@@ -54,7 +54,9 @@ export default function ViewBridge() {
             <div className="flex flex-row gap-1 py-2">
               <button className="primary_button mr-6">Fav Button</button>
               <Status id={bridge.id} />
-              <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+              <IsAuthenticated>
+                <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
+              </IsAuthenticated>
             </div>
           </div>
 
