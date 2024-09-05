@@ -20,7 +20,7 @@ export default function Status({ id }: Props) {
     <>
       {bridges.activeByUsers && (
         <div
-          className="flex flex-row rounded-lg bg-accent-1 px-4 py-2 "
+          className="secondary_button mr-6 flex flex-row"
           aria-label="Active"
         >
           {bridges.activeByUsers === user?.sub
@@ -32,7 +32,7 @@ export default function Status({ id }: Props) {
 
       {!bridges.activeByUsers && (
         <div
-          className="flex flex-row rounded-lg bg-accent-1 px-4 py-2 "
+          className="secondary_button mr-6 flex flex-row"
           aria-label="Inactive"
         >
           Inactive{' '}
