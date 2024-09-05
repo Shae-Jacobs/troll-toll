@@ -36,18 +36,22 @@
   @apply mx-auto px-4;
 }
 
+.custom_flex {
+  @apply flex items-center justify-center;
+}
+
 /* --- // BUTTONS // ---- */
 
 /* Primary Button */
 
 @layer components {
   .primary_button {
-    @apply button rounded-lg bg-accent-4 px-4 py-2 text-white;
+    @apply rounded-lg bg-accent-4 px-4 py-2 text-white;
   }
 
   /* Secondary Button */
   .secondary_button {
-    @apply button rounded-lg bg-accent-1 px-4 py-2;
+    @apply rounded-lg bg-accent-1 px-4 py-2;
   }
 }
 
