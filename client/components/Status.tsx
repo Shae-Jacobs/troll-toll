@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function Status({ id }: Props) {
+  // const { getAccessTokenSilently, getIdTokenClaims } = useAuth0()
   const { data: bridges, isPending, isError, error } = useBridgesById(id)
   const { user } = useAuth0()
   if (isError) {
