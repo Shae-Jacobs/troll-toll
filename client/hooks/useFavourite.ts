@@ -5,6 +5,7 @@ import {
   MutationFunction,
 } from '@tanstack/react-query'
 import * as API from '../apis/favourite'
+import { Favourite } from '../../models/favourite'
 
 export function useFavourites(usersToken: string) {
   const query = useQuery({
@@ -29,6 +30,16 @@ export function useFavouritesMutation<TData = unknown, TVariables = unknown>(
   })
 
   return mutation
+}
+
+export function useAddFavourites() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (newFave: Favourite) => API.addFavourite(newFave),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['favourites'] })
+    },
+  })
 }
 
 // Update Mutation Hooks
