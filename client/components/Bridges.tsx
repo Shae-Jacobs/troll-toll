@@ -26,8 +26,10 @@ export default function Bridges() {
                 src={`/bridges/${bridge.imagePath}`}
               />
             </Link>
-            <Status id={bridge.id} />
-            <RegPatrol id={bridge.id} />
+            <div className="flex flex-row px-4 py-2">
+              <Status id={bridge.id} />
+              <RegPatrol id={bridge.id} />
+            </div>
           </div>
         ))}
       </ul>

@@ -40,7 +40,11 @@ export default function RegPatrol({ id }: Props) {
   return (
     <>
       {!bridges.activeByUsers && (
-        <button onClick={handleClick} aria-label="status-button" className="">
+        <button
+          className="rounded-lg bg-accent-1 px-4 py-2"
+          onClick={handleClick}
+          aria-label="status-button"
+        >
           Patrol Bridge
         </button>
       )}
