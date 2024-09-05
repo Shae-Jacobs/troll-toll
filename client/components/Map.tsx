@@ -1,4 +1,4 @@
-import { useBridgesById } from '../hooks/useBridges'
+import { useBridgesById } from '../hooks/useBridge'
 import { useParams } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 

@@ -2,12 +2,9 @@ import { useParams } from 'react-router-dom'
 import { useBridgesById } from '../hooks/useBridge.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
-<<<<<<< HEAD
-import Map from './Map.tsx'
-=======
 import { useQueryClient } from '@tanstack/react-query'
+import Map from './Map.tsx'
 
->>>>>>> cc36abb1d9846bf088c6c2ffe3f471885bf812f0
 export default function ViewBridge() {
   const queryClient = useQueryClient()
   const params = useParams()
