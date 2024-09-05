@@ -2,11 +2,15 @@ import { useParams } from 'react-router-dom'
 import { useBridgesById } from '../hooks/useBridge.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
+import CalculatorDisplay from './CalculatorDisplay.tsx'
+import IsAuthenticated from './IsAuthenticated.tsx'
 import { useQueryClient } from '@tanstack/react-query'
 import Map from './Map.tsx'
 
 export default function ViewBridge() {
   const queryClient = useQueryClient()
+  const { user } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
   const { data: bridge, error, isPending, refetch } = useBridgesById(id)
@@ -75,6 +79,9 @@ export default function ViewBridge() {
           </div>
         </div>
       </div>
+      <IsAuthenticated>
+        {user && <CalculatorDisplay user={user.sub || ''} id={bridge.id} />}
+      </IsAuthenticated>
       <Map />
     </>
   )

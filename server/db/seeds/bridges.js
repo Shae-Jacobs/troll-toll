@@ -177,18 +177,94 @@ export async function seed(knex) {
 
   await knex('tolls').insert([
     {
-      id: 1,
-      users_token: 'auth0|1234',
+      users_token: '0auth|1234',
       candies: 5,
       time_stamp: `${date}`,
       bridges_id: 1,
     },
     {
-      id: 2,
-      users_token: 'auth0|4321',
+      users_token: '0auth|1234',
       candies: 5,
       time_stamp: `${date}`,
-      bridges_id: 2,
+      bridges_id: 1,
+    },
+    {
+      users_token: '0auth|1234',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 1,
+    },
+    {
+      users_token: '0auth|1234',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 1,
+    },
+    {
+      users_token: '0auth|1234',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 8,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 12,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
+    },
+    {
+      users_token: '0auth|1234',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 1,
+    },
+    {
+      users_token: '0auth|4321',
+      candies: 5,
+      time_stamp: `${date}`,
+      bridges_id: 3,
     },
   ])
 }
