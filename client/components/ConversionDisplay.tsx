@@ -29,9 +29,21 @@ function ConversionDisplay({ candies }: Props) {
     <>
       <h3 className="heading-3">{`${user?.name}'s Earnings:`}</h3>
       <br />
-      {remainingCandies !== 0 && <p>🍬 Candies: {remainingCandies}</p>}
-      {remainingGoldRings !== 0 && <p>💍 Gold Rings: {remainingGoldRings}</p>}
-      {totalGoats !== 0 && <p>🐐 Goats: {totalGoats}</p>}
+      {remainingCandies !== 0 && (
+        <p>
+          <span className="emoji">🍬</span> Candies: {remainingCandies}
+        </p>
+      )}
+      {remainingGoldRings !== 0 && (
+        <p>
+          <span className="emoji">💍</span> Gold Rings: {remainingGoldRings}
+        </p>
+      )}
+      {totalGoats !== 0 && (
+        <p>
+          <span className="emoji">🐐</span> Goats: {totalGoats}
+        </p>
+      )}
     </>
   )
 }

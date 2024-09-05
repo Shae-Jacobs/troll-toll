@@ -51,7 +51,9 @@ function CalculatorDisplay({ user, id }: Props) {
           </div>
           <br />
           <div className="rounded-md bg-accent-1 p-4">
-            <p className="paragraph">Total Candies: Ȼ{candiesTotal}</p>
+            <p className="paragraph">
+              <span className="emoji">🧮</span> Total Candies: Ȼ{candiesTotal}
+            </p>
           </div>
         </div>
         <AddToll id={id} candies={5} />
