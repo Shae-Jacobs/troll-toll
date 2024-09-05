@@ -1,6 +1,6 @@
 import { useToll } from '../hooks/useToll'
 import { useState, useEffect } from 'react'
-import ConversionDisplay from './ConvertionDisplay'
+import ConversionDisplay from './ConversionDisplay'
 import IsAuthenticated from './IsAuthenticated'
 import AddToll from './AddToll'
 
