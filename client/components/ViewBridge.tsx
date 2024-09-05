@@ -8,6 +8,7 @@ import IsAuthenticated from './IsAuthenticated.tsx'
 import { useQueryClient } from '@tanstack/react-query'
 import AddFavourite from './RegAddFavourites.tsx'
 import { useEffect, useState, useCallback } from 'react'
+import Map from './Map.tsx'
 
 export default function ViewBridge() {
   const { getAccessTokenSilently } = useAuth0()
@@ -113,6 +114,7 @@ export default function ViewBridge() {
           <CalculatorDisplay user={user.sub || ''} id={bridge.id} />
         )}
       </IsAuthenticated>
+      <Map />
     </>
   )
 }
