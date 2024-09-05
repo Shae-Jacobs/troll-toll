@@ -1,7 +1,6 @@
 import { useToll } from '../hooks/useToll'
 import { useState, useEffect } from 'react'
 import ConversionDisplay from './ConversionDisplay'
-import AddToll from './AddToll'
 import SetToll from './SetToll'
 
 interface Props {
