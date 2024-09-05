@@ -50,7 +50,7 @@ export default function RegPatrol({ onInvalidated, id }: Props) {
 
     updateStatus.mutate({ id: id, usersToken: token }, mutationOptions)
   }
-  console.log(id, bridges.activeByUsers)
+
   return (
     <>
       {!bridges.activeByUsers && (
