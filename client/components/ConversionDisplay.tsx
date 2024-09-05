@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 interface Props {
   candies: number
 }
 
 function ConversionDisplay({ candies }: Props) {
+  const { user } = useAuth0()
   const [remainingCandies, setRemainingCandies] = useState(
     0 as number | undefined,
   )
@@ -25,7 +27,7 @@ function ConversionDisplay({ candies }: Props) {
 
   return (
     <>
-      <h3 className="heading-3">Your Earnings:</h3>
+      <h3 className="heading-3">{`${user?.name}'s earnings:`}</h3>
       <p>Candies: Ȼ{remainingCandies}</p>
       <p>Gold Rings: 💍{remainingGoldRings}</p>
       <p>Goats: 🐐{totalGoats}</p>

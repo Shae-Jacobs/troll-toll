@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { useAddToll } from '../hooks/useAddToll'
 
 interface Props {
@@ -6,14 +7,14 @@ interface Props {
 }
 
 function AddToll({ id, candies }: Props) {
-  const user = '0auth|1234'
+  const { user } = useAuth0()
 
   const addMutation = useAddToll(id)
 
   const handleClick = async () => {
     try {
       addMutation.mutate({
-        usersToken: user,
+        usersToken: user?.sub || '',
         candies: candies,
         timeStamp: Date.now().toString(),
         bridgesId: id,

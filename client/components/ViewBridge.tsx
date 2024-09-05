@@ -2,8 +2,12 @@ import { useParams } from 'react-router-dom'
 import { useBridgesById } from '../hooks/useBridges.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
+import CalculatorDisplay from './CalculatorDisplay.tsx'
+import IsAuthenticated from './IsAuthenticated.tsx'
 
 export default function ViewBridge() {
+  const { user } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
   const { data: bridge, error, isPending } = useBridgesById(id)
@@ -64,6 +68,9 @@ export default function ViewBridge() {
           </div>
         </div>
       </div>
+      <IsAuthenticated>
+        {user && <CalculatorDisplay user={user.sub || ''} id={bridge.id} />}
+      </IsAuthenticated>
     </>
   )
 }
