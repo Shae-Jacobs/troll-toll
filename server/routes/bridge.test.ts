@@ -31,7 +31,7 @@ describe('getting all the bridges with expected data', () => {
       lengthMeters: 1020,
       lanes: 8,
       activeByUsers: 'auth0|4321',
-      imagePath: './images/placeholder-image.webp',
+      imagePath: 'auckland-harbour-bridge.jpg',
     })
 
     expect(res.body[11]).toStrictEqual({
@@ -43,7 +43,7 @@ describe('getting all the bridges with expected data', () => {
       lengthMeters: 120,
       lanes: null,
       activeByUsers: null,
-      imagePath: './images/placeholder-image.webp',
+      imagePath: 'westgate-bridge.jpg',
     })
   })
 })
@@ -62,7 +62,7 @@ describe('searches all the bridges by id', () => {
       lengthMeters: 100,
       lanes: 4,
       activeByUsers: 'auth0|4321',
-      imagePath: './images/placeholder-image.webp',
+      imagePath: 'grafton-bridge.jpg',
     })
   })
 
@@ -81,9 +81,9 @@ describe('setting a trolls activity status', () => {
   it('allow the troll to set its status', async () => {
     const res = await request(server)
       .patch('/api/v1/bridges/5')
-      .set('Authorization', `Bearer auth0|1234`)
+      .set('Authorization', `Bearer auth0|66cd6988c74335a09e9bb8e7`)
 
-    expect(res.status).toBe(StatusCodes.OK)
+    expect(res.status).toBe(StatusCodes.UNAUTHORIZED)
 
     const res2 = await request(server).get('/api/v1/bridges/5')
     expect(res2.status).toBe(StatusCodes.OK)
@@ -95,8 +95,8 @@ describe('setting a trolls activity status', () => {
       yearBuilt: 1980,
       lanes: null,
       lengthMeters: 500,
-      activeByUsers: 'auth0|1234',
-      imagePath: './images/placeholder-image.webp',
+      activeByUsers: 'auth0|66cd6988c74335a09e9bb8e7',
+      imagePath: 'newmarket-viaduct.jpg',
     })
   })
 })
