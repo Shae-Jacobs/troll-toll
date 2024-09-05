@@ -31,20 +31,33 @@ function CalculatorDisplay({ user, id }: Props) {
     return <p>Failed {String(error)}</p>
   }
 
-  return (
-    <>
-      <div className="calculatorContainer md m-4 mx-auto grid min-h-60 w-96 justify-center rounded-lg bg-accent-2 p-4 px-4">
-        <div className="rounded-md bg-accent-1 p-4">
-          <ConversionDisplay candies={candiesTotal} />
+  if (candiesTotal == 0) {
+    return (
+      <>
+        <div className="calculatorContainer md m-4 mx-auto grid min-h-20 w-96 justify-center rounded-lg bg-accent-2 p-4 px-4">
+          <div className="rounded-md bg-accent-1 p-4">
+            <h3 className="heading-3">No Earnings Here Yet</h3>
+          </div>
         </div>
-        <br />
-        <div className="rounded-md bg-accent-1 p-4">
-          <p className="paragraph">Total Candies: Ȼ{candiesTotal}</p>
+        <AddToll id={id} candies={5} />
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div className="calculatorContainer md m-4 mx-auto grid min-h-60 w-96 justify-center rounded-lg bg-accent-2 p-4 px-4">
+          <div className="rounded-md bg-accent-1 p-4">
+            <ConversionDisplay candies={candiesTotal} />
+          </div>
+          <br />
+          <div className="rounded-md bg-accent-1 p-4">
+            <p className="paragraph">Total Candies: Ȼ{candiesTotal}</p>
+          </div>
         </div>
-      </div>
-      <AddToll id={id} candies={5} />
-    </>
-  )
+        <AddToll id={id} candies={5} />
+      </>
+    )
+  }
 }
 
 export default CalculatorDisplay
