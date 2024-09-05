@@ -73,14 +73,14 @@ export default function Bridges() {
               </Link>
               <div className="flex flex-row gap-1 py-2">
                 <IsAuthenticated>
-                  <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
-                </IsAuthenticated>
-                <IsAuthenticated>
                   <AddFavourite
                     token={token}
                     id={bridge.id}
                     onInvalidated={() => null}
                   />
+                </IsAuthenticated>
+                <IsAuthenticated>
+                  <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
                 </IsAuthenticated>
               </div>
             </div>
