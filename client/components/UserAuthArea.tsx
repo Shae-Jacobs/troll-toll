@@ -32,10 +32,7 @@ function UserAuthArea() {
         </div>
       </IsAuthenticated>
       <NotAuthenticated>
-        <button
-          className="button rounded-lg bg-accent-4 px-4 py-2 text-white"
-          onClick={handleLogIn}
-        >
+        <button className="primary_button" onClick={handleLogIn}>
           Log In
         </button>
       </NotAuthenticated>
