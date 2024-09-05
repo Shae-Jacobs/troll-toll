@@ -1,12 +1,15 @@
 // import { useAuth0 } from '@auth0/auth0-react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useBridgesById } from '../hooks/useBridges'
+import { useQueryClient } from '@tanstack/react-query'
 interface Props {
   id: number
+  onInvalidated: () => void
 }
 
-export default function RegPatrol({ id }: Props) {
+export default function RegPatrol({ onInvalidated, id }: Props) {
   const { getAccessTokenSilently } = useAuth0()
+  const queryClient = useQueryClient()
   const {
     data: bridges,
     isPending,
@@ -14,6 +17,17 @@ export default function RegPatrol({ id }: Props) {
     error,
     updateStatus,
   } = useBridgesById(id)
+
+  const handleMutationSuccess = () => {
+    queryClient.invalidateQueries({
+      queryKey: ['bridge', id],
+    })
+    onInvalidated()
+  }
+
+  const mutationOptions = {
+    onSuccess: handleMutationSuccess,
+  }
 
   if (isPending) {
     return <p>Checking Status...</p>
@@ -34,9 +48,9 @@ export default function RegPatrol({ id }: Props) {
       return 'undefined'
     })
 
-    updateStatus.mutate({ id: id, usersToken: token })
+    updateStatus.mutate({ id: id, usersToken: token }, mutationOptions)
   }
-
+  console.log(id, bridges.activeByUsers)
   return (
     <>
       {!bridges.activeByUsers && (
