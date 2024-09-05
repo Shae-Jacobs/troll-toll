@@ -4,7 +4,7 @@ import { useBridgesById } from '../hooks/useBridges'
 import { useQueryClient } from '@tanstack/react-query'
 interface Props {
   id: number
-  onInvalidated: () => void
+  onInvalidated: (id: number) => void
 }
 
 export default function RegPatrol({ onInvalidated, id }: Props) {
@@ -22,7 +22,7 @@ export default function RegPatrol({ onInvalidated, id }: Props) {
     queryClient.invalidateQueries({
       queryKey: ['bridge', id],
     })
-    onInvalidated()
+    onInvalidated(id)
   }
 
   const mutationOptions = {

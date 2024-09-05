@@ -1,19 +1,22 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 import { useBridges } from '../hooks/useBridges.ts'
 import { useQueryClient } from '@tanstack/react-query'
 
 export default function Bridges() {
+  const navigate = useNavigate()
   const { data, isError, isPending, error, refetch } = useBridges()
   const queryClient = useQueryClient()
 
-  const handleInvalidate = () => {
+  const handleInvalidate = (id: number) => {
     console.log('Invalidating bridges query and refetching data.')
     queryClient.invalidateQueries({
       queryKey: ['bridges'],
     })
     refetch()
+
+    navigate(`/bridges/${id}`)
   }
 
   if (!data || isPending) {
@@ -38,7 +41,7 @@ export default function Bridges() {
                 />
                 <h2 className="heading-3">{bridge.name}</h2>
               </Link>
-              <div className="flex flex-row px-4 py-2">
+              <div className="flex flex-row gap-1 py-2">
                 <Status id={bridge.id} />
                 <RegPatrol id={bridge.id} onInvalidated={handleInvalidate} />
               </div>
