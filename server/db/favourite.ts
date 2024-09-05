@@ -30,17 +30,17 @@ export async function deleteFavouriteById(
   usersToken: string,
 ): Promise<void> {
   const favCheck = await db('favourites')
-    .where('favourites.bridges_id', id)
-    .andWhere('users_token', usersToken)
-    .first()
+    .where('favourites.users_token', usersToken)
+    .andWhere('favourites.bridges_id', id)
+    .select()
 
   if (!favCheck) {
     throw new Error('Favourite already deleted')
   }
 
   return await db('favourites')
-    .where('favourites.bridges_id', id)
-    .andWhere('users_token', usersToken)
+    .where('favourites.users_token', usersToken)
+    .andWhere('favourites.bridges_id', id)
     .delete()
 }
 
@@ -50,12 +50,13 @@ export async function addFavourite(
 ): Promise<Favourite> {
   const favCheck = await db('favourites')
     .where('favourites.bridges_id', id)
-    .andWhere('users_token', usersToken)
+    .andWhere('favourites.users_token', usersToken)
     .first()
 
   if (favCheck) {
     throw new Error('Favourite already added')
   }
+
   return await db('favourites').insert({
     users_token: usersToken,
     bridges_id: id,

@@ -8,8 +8,6 @@ import IsAuthenticated from './IsAuthenticated.tsx'
 import { useQueryClient } from '@tanstack/react-query'
 import AddFavourite from './RegAddFavourites.tsx'
 import { useEffect, useState, useCallback } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
-import IsAuthenticated from './IsAuthenticated.tsx'
 
 export default function ViewBridge() {
   const { getAccessTokenSilently } = useAuth0()

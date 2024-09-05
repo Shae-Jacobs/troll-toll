@@ -43,14 +43,19 @@ router.get('/:id', async (req: JwtRequest, res) => {
 })
 //TODO:CheckJWT
 //DELETE /api/v1/favourites/:id
-router.delete('/:id', async (req, res) => {
-  const id = Number(req.params.id) // const users = req.auth?.sub
-  const users = 'auth0|1234'
+router.delete('/:id', checkJwt, async (req: JwtRequest, res) => {
+  const users = req.auth?.sub
+  const id = Number(req.params.id)
 
-  // if (!auth0Id || auth0Id === 'undefined') {
-  //   console.error('No auth0Id')
-  //   return res.status(401).send('Unauthorized')
-  // }
+  if (!id || id < 1) {
+    console.error('No Bridge Found')
+    return res.status(400).send('Bad request')
+  }
+
+  if (!users || users === 'undefined') {
+    console.error('No auth0Id')
+    return res.status(401).send('Unauthorized')
+  }
   try {
     await db.deleteFavouriteById(id, users)
     res.sendStatus(202)

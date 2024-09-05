@@ -26,7 +26,7 @@ export default function AddFavourite({ onInvalidated, id, token }: Props) {
 
   const handleMutationSuccess = () => {
     queryClient.invalidateQueries({
-      queryKey: ['favourites'],
+      queryKey: ['favourites', token],
     })
     onInvalidated(id)
   }
@@ -79,23 +79,33 @@ export default function AddFavourite({ onInvalidated, id, token }: Props) {
     return <p>Something went wrong {favsError.message}</p>
   }
 
-  return !favourites.find(
+  const isFavourite = !favourites.find(
     (favourite) => favourite.bridgesId === Number(idBridge),
-  ) ? (
+  )
+
+  return isFavourite ? (
     <>
-      <button name="add" className="primary_button mr-6" onClick={handleClick}>
-        Add to favourites
-      </button>
+      {
+        <button
+          name="add"
+          className="primary_button mr-6"
+          onClick={handleClick}
+        >
+          Add to favourites
+        </button>
+      }
     </>
   ) : (
-    <>
-      <button
-        name="delete"
-        className="primary_button mr-6"
-        onClick={(event) => handleClick(event)}
-      >
-        Add to favourites
-      </button>
-    </>
+    !isFavourite && (
+      <>
+        <button
+          name="delete"
+          className="secondary_button mr-6"
+          onClick={(event) => handleClick(event)}
+        >
+          Unfavourite
+        </button>
+      </>
+    )
   )
 }

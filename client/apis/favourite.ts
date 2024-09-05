@@ -6,7 +6,7 @@ export const sleep = (ms: number) =>
 
 //GET 'api/v1/favourites'
 export async function getFavourites(usersToken: string): Promise<Favourite[]> {
-  if (usersToken === 'wait') {
+  if (usersToken === 'wait' || usersToken === 'undefined') {
     await sleep(500)
     return []
   }
