@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
-import { useBridges } from '../hooks/useBridge.ts'
+import { useBridges } from '../hooks/useBridges.ts'
 
 export default function Bridges() {
   const { data, isError, isPending, error } = useBridges()

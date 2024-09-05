@@ -1,4 +1,4 @@
-import { useAddFavourites } from '../hooks/useFavourite'
+import { useAddFavourites } from '../hooks/useFavourites'
 
 function AddFavourite() {
   const addFave = useAddFavourites()

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useBridges } from '../hooks/useBridge'
-import { useFavourites } from '../hooks/useFavourite'
+import { useBridges } from '../hooks/useBridges'
+import { useFavourites } from '../hooks/useFavourites'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import Status from './Status'

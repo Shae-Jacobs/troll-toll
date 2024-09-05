@@ -1,5 +1,5 @@
 // import { useAuth0 } from '@auth0/auth0-react'
-import { useBridgesById } from '../hooks/useBridge'
+import { useBridgesById } from '../hooks/useBridges'
 
 // Temp token
 const token = 'auth0|1234'

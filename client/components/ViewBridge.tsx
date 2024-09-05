@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useBridgesById } from '../hooks/useBridge.ts'
+import { useBridgesById } from '../hooks/useBridges.ts'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 

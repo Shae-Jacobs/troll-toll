@@ -1,4 +1,4 @@
-import { useBridgesById } from '../hooks/useBridge'
+import { useBridgesById } from '../hooks/useBridges'
 
 interface Props {
   id: number
