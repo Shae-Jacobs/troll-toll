@@ -8,6 +8,7 @@ export async function getFavourites(usersToken: string): Promise<Favourite[]> {
     .set('Authorization', `Bearer ${usersToken}`)
 
   return result.body as Favourite[]
+  console.log(result)
 }
 
 //GET 'api/v1/favourite/:user/:id'
