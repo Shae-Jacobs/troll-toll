@@ -26,12 +26,12 @@ function AddToll({ id, candies }: Props) {
 
   return (
     <>
-      <div className="calculatorContainer md m-4 mx-auto grid w-96 justify-center p-4 px-4">
+      <div className="calculatorContainer md w-150 m-4 mx-auto grid justify-center p-4 px-4">
         <button
           className="button rounded-lg bg-accent-5 px-20 py-2 text-white"
           onClick={handleClick}
         >
-          <span className="emoji">💰</span> Add Toll{' '}
+          <span className="emoji">💰</span> Add Ȼ{candies} Toll{' '}
           <span className="emoji">💰</span>
         </button>
       </div>

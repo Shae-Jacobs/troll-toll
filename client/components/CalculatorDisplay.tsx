@@ -2,6 +2,7 @@ import { useToll } from '../hooks/useToll'
 import { useState, useEffect } from 'react'
 import ConversionDisplay from './ConversionDisplay'
 import AddToll from './AddToll'
+import SetToll from './SetToll'
 
 interface Props {
   user: string
@@ -39,7 +40,7 @@ function CalculatorDisplay({ user, id }: Props) {
             <h3 className="heading-3">No Earnings Here Yet</h3>
           </div>
         </div>
-        <AddToll id={id} candies={5} />
+        <SetToll id={id} />
       </>
     )
   } else {
@@ -56,7 +57,7 @@ function CalculatorDisplay({ user, id }: Props) {
             </p>
           </div>
         </div>
-        <AddToll id={id} candies={5} />
+        <SetToll id={id} />
       </>
     )
   }
