@@ -109,7 +109,9 @@ export default function ViewBridge() {
         </div>
       </div>
       <IsAuthenticated>
-        {user && <CalculatorDisplay user={user.sub || ''} id={bridge.id} />}
+        {user && bridge.activeByUsers === user.sub && (
+          <CalculatorDisplay user={user.sub || ''} id={bridge.id} />
+        )}
       </IsAuthenticated>
     </>
   )
