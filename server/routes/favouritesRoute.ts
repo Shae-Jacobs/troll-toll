@@ -23,25 +23,6 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
 })
 
 //TODO:CheckJWT
-//GET /api/v1/favourites/:user/:id
-router.get('/:id', async (req: JwtRequest, res) => {
-  const id = Number(req.params.id)
-  // const users = req.auth?.sub
-  const users = 'auth0|1234'
-
-  // if (!auth0Id || auth0Id === 'undefined') {
-  //   console.error('No auth0Id')
-  //   return res.status(401).send('Unauthorized')
-  // }
-  try {
-    const favourite = await db.getFavouriteById(users, id)
-    res.json(favourite)
-  } catch (error) {
-    console.error(error)
-    res.status(500).send('Something went wrong')
-  }
-})
-//TODO:CheckJWT
 //DELETE /api/v1/favourites/:id
 router.delete('/:id', checkJwt, async (req: JwtRequest, res) => {
   const users = req.auth?.sub
