@@ -8,7 +8,7 @@ interface Props {
 function AddToll({ id, candies }: Props) {
   const user = '0auth|1234'
 
-  const addMutation = useAddToll()
+  const addMutation = useAddToll(id)
 
   const handleClick = async () => {
     try {

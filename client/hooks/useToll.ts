@@ -8,6 +8,6 @@ export function useToll(user: string, id: number) {
       const result = await getUsersTollsByBridgeId(user, id)
       return result
     },
-    queryKey: ['tolls'],
+    queryKey: ['tolls', id],
   })
 }

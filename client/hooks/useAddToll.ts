@@ -2,12 +2,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addToll } from '../apis/toll'
 import { Toll } from '../../models/toll'
 
-export function useAddToll() {
+export function useAddToll(id: number) {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (newToll: Toll) => addToll(newToll),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tolls'] })
+      queryClient.invalidateQueries({ queryKey: ['tolls', id] })
     },
   })
 }

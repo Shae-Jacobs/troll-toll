@@ -1,20 +1,26 @@
-// import { useQuery } from '@tanstack/react-query'
-// import { getUsersTollsByBridgeId } from '../apis/toll'
-// import { Toll, TollData } from '../../models/toll'
-import { Result } from 'postcss'
 import { useToll } from '../hooks/useToll'
+import { useState, useEffect } from 'react'
+import ConversionDisplay from './ConvertionDisplay'
 
 interface Props {
   user: string
   id: number
 }
 
-//1Ȼ is 1 troll rock candy, the smallest division of currency
-// 100 Rock Candies = 1 Gold Ring (AuR) : 10Ȼ = 1AuR
-// 100 Gold Rings = 1 Goat (GT) : 100AuR = 1 GT
-
 function CalculatorDisplay({ user, id }: Props) {
+  const [candiesTotal, setCandiesTotal] = useState(0 as number)
+
   const { data, isPending, isError, error } = useToll(user, id)
+
+  useEffect(() => {
+    if (data) {
+      const result = data?.map((candies) => candies.candies)
+      const reduced = result?.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue
+      }, 0)
+      setCandiesTotal(reduced)
+    }
+  }, [data])
 
   if (isPending) {
     return <p>... is Pending</p>
@@ -24,34 +30,11 @@ function CalculatorDisplay({ user, id }: Props) {
     return <p>Failed {String(error)}</p>
   }
 
-  //map of candies object and extract just the candies
-
-  function gettingCandies() {
-    const result = data?.map((candies) => candies.candies)
-
-    const reduced = result?.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue
-    }, 0)
-
-    return reduced
-  }
-
-  const candiesTotal = gettingCandies() as number
-
-  const totalGoldRings = Number(Math.floor(candiesTotal / 100))
-  const remainingCandies = Number(candiesTotal % 100)
-
-  const totalGoats = Number(Math.floor(totalGoldRings / 100))
-  const remainingGoldRings = Number(totalGoldRings % 100)
-
   return (
     <>
       <p>Total Candies: Ȼ{candiesTotal}</p>
       <br />
-      <h2>with conversion, you have:</h2>
-      <p>Candies: Ȼ{remainingCandies}</p>
-      <p>Gold Rings: 💍{remainingGoldRings}</p>
-      <p>Goats: 🐐{totalGoats}</p>
+      <ConversionDisplay candies={candiesTotal} />
       <br />
     </>
   )
