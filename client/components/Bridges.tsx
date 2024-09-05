@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
-import { useBridges } from '../hooks/useBridges.ts'
+import { useBridges } from '../hooks/useBridge.ts'
 import { useQueryClient } from '@tanstack/react-query'
 
 export default function Bridges() {

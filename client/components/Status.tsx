@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { useBridgesById } from '../hooks/useBridges'
+import { useBridgesById } from '../hooks/useBridge'
 
 interface Props {
   id: number

@@ -1,6 +1,6 @@
 // import { useAuth0 } from '@auth0/auth0-react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useBridgesById } from '../hooks/useBridges'
+import { useBridgesById } from '../hooks/useBridge'
 import { useQueryClient } from '@tanstack/react-query'
 interface Props {
   id: number
