@@ -20,11 +20,13 @@ export default function Bridges() {
           {data.map((bridge) => (
             <div key={bridge.id} aria-label={bridge.name}>
               <Link to={`/bridges/${bridge.id}`}>
-                <img
-                  className="max-h-md w-full object-cover"
-                  alt={`${bridge.name} during the daytime`}
-                  src={`/bridges/${bridge.imagePath}`}
-                />
+                <div className="w-50 h-40 overflow-hidden">
+                  <img
+                    className="h-full w-full object-cover"
+                    alt={`${bridge.name} during the daytime`}
+                    src={`/bridges/${bridge.imagePath}`}
+                  />
+                </div>
                 <h2 className="heading-3">{bridge.name}</h2>
               </Link>
               <Status id={bridge.id} />
