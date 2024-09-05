@@ -31,12 +31,13 @@ function CalculatorDisplay({ user, id }: Props) {
   }
 
   return (
-    <>
+    <div className="calculatorContainer md mx-auto grid min-h-60 w-96 justify-center bg-accent-2 p-4 px-4">
+      <br />
       <p>Total Candies: Ȼ{candiesTotal}</p>
       <br />
       <ConversionDisplay candies={candiesTotal} />
       <br />
-    </>
+    </div>
   )
 }
 
