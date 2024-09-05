@@ -8,10 +8,14 @@ import * as API from '../apis/favourite'
 
 export function useFavourites(usersToken: string) {
   const query = useQuery({
-    queryKey: ['favourites'],
+    queryKey: ['favourites', usersToken],
     queryFn: () => API.getFavourites(usersToken),
   })
-  return { ...query, addFav: useAddFavourites() }
+  return {
+    ...query,
+    addFav: useAddFavourites(),
+    deleteFav: useDeleteFavourites(),
+  }
 }
 
 export function useFavouritesMutation<TData = unknown, TVariables = unknown>(
@@ -31,16 +35,10 @@ export function useFavouritesMutation<TData = unknown, TVariables = unknown>(
   return mutation
 }
 
-// export function useAddFavourites() {
-//   const queryClient = useQueryClient()
-//   return useMutation({
-//     mutationFn: async () => API.addFavourite,
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: ['favourites'] })
-//     },
-//   })
-// }
-
 export function useAddFavourites() {
   return useFavouritesMutation(API.addFavourite)
+}
+
+export function useDeleteFavourites() {
+  return useFavouritesMutation(API.deleteFavouritesById)
 }
