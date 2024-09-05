@@ -1,14 +1,15 @@
 // import { useAuth0 } from '@auth0/auth0-react'
-import { useBridgesById } from '../hooks/useBridges'
-
-// Temp token
-const token = 'auth0|1234'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useBridgesById } from '../hooks/useBridge'
+import { useQueryClient } from '@tanstack/react-query'
 interface Props {
   id: number
+  onInvalidated: (id: number) => void
 }
 
-export default function RegPatrol({ id }: Props) {
-  // const { getAccessTokenSilently, getIdTokenClaims } = useAuth0()
+export default function RegPatrol({ onInvalidated, id }: Props) {
+  const { getAccessTokenSilently } = useAuth0()
+  const queryClient = useQueryClient()
   const {
     data: bridges,
     isPending,
@@ -16,6 +17,17 @@ export default function RegPatrol({ id }: Props) {
     error,
     updateStatus,
   } = useBridgesById(id)
+
+  const handleMutationSuccess = () => {
+    queryClient.invalidateQueries({
+      queryKey: ['bridge', id],
+    })
+    onInvalidated(id)
+  }
+
+  const mutationOptions = {
+    onSuccess: handleMutationSuccess,
+  }
 
   if (isPending) {
     return <p>Checking Status...</p>
@@ -26,24 +38,27 @@ export default function RegPatrol({ id }: Props) {
   }
 
   const handleClick = async () => {
-    // const tokenId = await getIdTokenClaims()
-    // if (bridges.activeByUsers === null || undefined) {
-    //   console.error('bridge already active!')
-    //   return 'bridge already active'
-    // }
+    if (bridges.activeByUsers !== null || undefined) {
+      console.error('bridge already active!')
+      return 'bridge already active'
+    }
 
-    // const token = await getAccessTokenSilently().catch(() => {
-    //   console.error('Login Required')
-    //   return 'undefined'
-    // })
+    const token = await getAccessTokenSilently().catch(() => {
+      console.error('Login Required')
+      return 'undefined'
+    })
 
-    updateStatus.mutate({ id: id, usersToken: token })
+    updateStatus.mutate({ id: id, usersToken: token }, mutationOptions)
   }
 
   return (
     <>
       {!bridges.activeByUsers && (
-        <button onClick={handleClick} aria-label="status-button">
+        <button
+          className="primary_button"
+          onClick={handleClick}
+          aria-label="status-button"
+        >
           Patrol Bridge
         </button>
       )}

@@ -26,7 +26,10 @@ describe('db.getBridges()', () => {
 
 describe('db.setActiveBridgesById()', () => {
   it('set an active bridge by id and user token', async () => {
-    const bridges = await db.setActiveBridgesById(5, 'auth0|1234')
+    const bridges = await db.setActiveBridgesById(
+      5,
+      'auth0|66cd6988c74335a09e9bb8e7',
+    )
     const bridges2 = await db.getBridgesById(5)
 
     expect(bridges).toStrictEqual(1)
@@ -39,8 +42,8 @@ describe('db.setActiveBridgesById()', () => {
       yearBuilt: 1980,
       lanes: null,
       lengthMeters: 500,
-      activeByUsers: 'auth0|1234',
-      imagePath: String(process.env.IMAGE_PATH),
+      activeByUsers: 'auth0|66cd6988c74335a09e9bb8e7',
+      imagePath: 'newmarket-viaduct.jpg',
     })
   })
 })
