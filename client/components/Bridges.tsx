@@ -3,7 +3,6 @@ import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 import { useBridges } from '../hooks/useBridge.ts'
 import { useQueryClient } from '@tanstack/react-query'
-import CalculatorDisplay from './CalculatorDisplay.tsx'
 
 export default function Bridges() {
   const navigate = useNavigate()
