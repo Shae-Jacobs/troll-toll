@@ -12,7 +12,7 @@ function AddToll({ id, candies }: Props) {
 
   const handleClick = async () => {
     try {
-      ;(await addMutation).mutate({
+      addMutation.mutate({
         usersToken: user,
         candies: candies,
         timeStamp: Date.now().toString(),
