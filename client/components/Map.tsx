@@ -1,5 +1,16 @@
 import { useBridgesById } from '../hooks/useBridges'
 import { useParams } from 'react-router-dom'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+
+const containerStyle = {
+  width: '100%',
+  height: '500px',
+}
+
+const defaultCenter = {
+  lat: -36.830291, // Default latitude
+  lng: 174.745348, // Default longitude
+}
 
 export default function Map() {
   const params = useParams()
@@ -16,10 +27,27 @@ export default function Map() {
   if (error) {
     return <p>Sorry cuz, no map for you{error.message}</p>
   }
+  const center =
+    bridge.latitude && bridge.longitude
+      ? {
+          lat: parseFloat(bridge.latitude),
+          lng: parseFloat(bridge.longitude),
+        }
+      : defaultCenter
+  console.log(center)
   return (
     <>
-      <h1>{`${bridge.latitude}`}</h1>
-      <h1>{`${bridge.longitude}`}</h1>
+      <section className="mx-auto my-8 w-1/2">
+        <LoadScript googleMapsApiKey="">
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={12}
+          >
+            <Marker position={center} />
+          </GoogleMap>
+        </LoadScript>
+      </section>
     </>
   )
 }
