@@ -55,7 +55,7 @@ export default function RegPatrol({ onInvalidated, id }: Props) {
     <>
       {!bridges.activeByUsers && (
         <button
-          className="rounded-lg bg-accent-4 px-4 py-2 text-white"
+          className="primary_button"
           onClick={handleClick}
           aria-label="status-button"
         >

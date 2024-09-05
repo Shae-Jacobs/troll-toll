@@ -5,10 +5,10 @@ import RegPatrol from './RegPatrol.tsx'
 import { useQueryClient } from '@tanstack/react-query'
 
 export default function ViewBridge() {
+  const queryClient = useQueryClient()
   const params = useParams()
   const id = Number(params.id)
   const { data: bridge, error, isPending, refetch } = useBridgesById(id)
-  const queryClient = useQueryClient()
 
   const handleInvalidate = (id: number) => {
     console.log('Invalidating bridges query and refetching data.')
