@@ -25,7 +25,7 @@ function ConversionDisplay({ candies }: Props) {
 
   return (
     <>
-      <h2>with conversion, you have:</h2>
+      <h3 className="heading-3">Your Earnings:</h3>
       <p>Candies: Ȼ{remainingCandies}</p>
       <p>Gold Rings: 💍{remainingGoldRings}</p>
       <p>Goats: 🐐{totalGoats}</p>

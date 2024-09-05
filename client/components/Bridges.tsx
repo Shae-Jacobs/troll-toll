@@ -3,7 +3,6 @@ import Status from './Status.tsx'
 import RegPatrol from './RegPatrol.tsx'
 import { useBridges } from '../hooks/useBridges.ts'
 import CalculatorDisplay from './CalculatorDisplay.tsx'
-import AddToll from './AddToll.tsx'
 
 export default function Bridges() {
   const { data, isError, isPending, error } = useBridges()
@@ -29,7 +28,6 @@ export default function Bridges() {
               />
             </Link>
             <CalculatorDisplay user={'0auth|1234'} id={bridge.id} />
-            <AddToll id={bridge.id} candies={5} />
             <Status id={bridge.id} />
             <RegPatrol id={bridge.id} />
           </div>

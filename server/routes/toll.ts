@@ -1,11 +1,12 @@
 import express from 'express'
 
 import * as db from '../db/toll.ts'
+import checkJwt from '../auth0.ts'
 
 const router = express.Router()
 
 // GET /api/v1/tolls/:user/:id
-router.get('/:user/:id', async (req, res) => {
+router.get('/:user/:id', checkJwt, async (req, res) => {
   const user = String(req.params.user)
   const id = Number(req.params.id)
   try {
@@ -18,7 +19,7 @@ router.get('/:user/:id', async (req, res) => {
 })
 
 // POST /api/v1/tolls
-router.post('/', async (req, res) => {
+router.post('/', checkJwt, async (req, res) => {
   const newToll = req.body
   try {
     await db.addToll(newToll)

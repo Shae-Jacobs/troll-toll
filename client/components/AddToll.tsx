@@ -12,7 +12,7 @@ function AddToll({ id, candies }: Props) {
 
   const handleClick = async () => {
     try {
-      await addMutation.mutate({
+      ;(await addMutation).mutate({
         usersToken: user,
         candies: candies,
         timeStamp: Date.now().toString(),
@@ -25,9 +25,14 @@ function AddToll({ id, candies }: Props) {
 
   return (
     <>
-      <button onClick={handleClick} className="border border-gray-500 p-2">
-        Add New Toll Now
-      </button>
+      <div className="calculatorContainer md m-4 mx-auto grid w-96 justify-center p-4 px-4">
+        <button
+          className="button rounded-lg bg-accent-5 px-20 py-2 text-white"
+          onClick={handleClick}
+        >
+          💰 Add Toll 💰
+        </button>
+      </div>
     </>
   )
 }
